@@ -1,24 +1,16 @@
 package com.shopbanquanao.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
 
 @Entity
 @Table(name="users")
 @Data
-@Setter
-@Getter
 @NoArgsConstructor
 public class User {
-	
 	@Id
 	long id;
 	String name;

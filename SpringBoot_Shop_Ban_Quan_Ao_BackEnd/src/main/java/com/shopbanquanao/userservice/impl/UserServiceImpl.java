@@ -1,13 +1,13 @@
-package com.shopbanquanao.UserServices.impl;
+package com.shopbanquanao.userservice.impl;
 
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopbanquanao.UserServices.UserService;
 import com.shopbanquanao.model.User;
 import com.shopbanquanao.repository.UserRepository;
+import com.shopbanquanao.userservice.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -34,6 +34,18 @@ public class UserServiceImpl implements UserService{
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+
+
+	@Override
+	public User findByMobile(String mobile) throws Exception {
+		return userRepo.findByMobile(mobile).orElseThrow(() -> new Exception("User Not Found...."));
+	}
+
+
+	@Override
+	public User getUserDetailById(long userId) throws Exception {
+		return userRepo.findById(userId).orElseThrow(()->new Exception("User Not Found"));
 	}
 
 }
