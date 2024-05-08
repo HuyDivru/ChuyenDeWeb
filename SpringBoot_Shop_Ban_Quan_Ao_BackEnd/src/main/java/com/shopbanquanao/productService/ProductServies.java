@@ -1,11 +1,12 @@
 package com.shopbanquanao.productService;
 
 import java.util.List;
-import java.util.Locale.Category;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shopbanquanao.model.Category;
 import com.shopbanquanao.model.Products;
 import com.shopbanquanao.repository.CategoryRepo;
 import com.shopbanquanao.repository.ProductRepo;
@@ -22,13 +23,11 @@ public class ProductServies {
 	}
 
 	public List<Category> getAllCategory() {
-		
-		return null;
+		return cateRepo.findAll();
 	}
 
-	public List<Products> getProductsByCategory(String category_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Products> getProductsByCategory(String product_id) {
+		return productRepo.getByCategoryId(product_id);
 	}
-
+	
 }
