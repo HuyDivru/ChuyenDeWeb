@@ -28,6 +28,5 @@ public class ProductServies {
 
 	public List<Products> getProductsByCategory(String product_id) {
 		return productRepo.getByCategoryId(product_id);
-	}
-	
+	}	
 }
