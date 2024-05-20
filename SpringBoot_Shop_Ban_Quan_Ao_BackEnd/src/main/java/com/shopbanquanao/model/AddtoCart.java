@@ -13,7 +13,7 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "add_to_cart")
-public class AddToCart {
+public class AddtoCart {
 	@Id
 	long id;
 	@JsonIgnore

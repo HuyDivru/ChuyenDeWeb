@@ -13,7 +13,7 @@ import com.shopbanquanao.model.Products;
 public interface ProductRepo extends JpaRepository<Products, Long> {
 	
 	
-	@Query("Select pro from Products pro WHERE pro.category_id=:cat_id")
-	List<Products> getByCategoryId(@Param("cat_id") String cat_id);
+	@Query("Select pro FROM Products pro WHERE pro.category_id=:cat_id")
+	List<Products> getByCategoryId(@Param("cat_id")String cat_id);
 	
 }

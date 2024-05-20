@@ -12,7 +12,7 @@ import com.shopbanquanao.repository.CategoryRepo;
 import com.shopbanquanao.repository.ProductRepo;
 
 @Service
-public class ProductServies {
+public class ProductServices {
 	
 	@Autowired
 	ProductRepo productRepo;

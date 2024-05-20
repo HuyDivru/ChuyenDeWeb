@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shopbanquanao.CartService.CartService;
 import com.shopbanquanao.JWTConfiguration.ShoppingConfiguration;
 import com.shopbanquanao.controller.requestPojo.ApiResponse;
-import com.shopbanquanao.model.AddToCart;
+import com.shopbanquanao.model.AddtoCart;
 import com.shopbanquanao.model.CheckoutCart;
 
 @RestController
@@ -35,9 +35,9 @@ public class OrderController {
 			double total_amt=Double.parseDouble(addCartRequest.get("total_price"));
 			
 			if(cartService.checkTotalAmountAgainstCart(total_amt,user_Id)) {
-				List<AddToCart> cartItems=cartService.getCartByUserId(user_Id);
+				List<AddtoCart> cartItems=cartService.getCartByUserId(user_Id);
 				List<CheckoutCart> tmp=new ArrayList<CheckoutCart>();
-				for(AddToCart addCart: cartItems) {
+				for(AddtoCart addCart: cartItems) {
 					String orderId= ""+getOrderId();
 					CheckoutCart cart=new CheckoutCart();
 					cart.setPayment_type(addCartRequest.get("pay_type"));

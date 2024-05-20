@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopbanquanao.model.Category;
 import com.shopbanquanao.model.Products;
-import com.shopbanquanao.productService.ProductServies;
+import com.shopbanquanao.productService.ProductServices;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.apache.commons.io.IOUtils;
@@ -25,7 +25,7 @@ import org.apache.commons.io.IOUtils;
 public class ProductController{
 	
 	@Autowired
-	ProductServies productServies;
+	ProductServices productServies;
 	
 	@GetMapping("getAll")
 	public List<Products> getAllProducts(){

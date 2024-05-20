@@ -16,112 +16,87 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shopbanquanao.CartService.CartService;
 import com.shopbanquanao.JWTConfiguration.ShoppingConfiguration;
 import com.shopbanquanao.controller.requestPojo.ApiResponse;
-import com.shopbanquanao.model.AddToCart;
-//restfullapi
+import com.shopbanquanao.model.AddtoCart;
+
 @RestController
 @RequestMapping("api/addtocart")
 public class AddToCartController {
-	
-	
-	@Autowired
-	CartService cartService;
-	//trả về sản phẩm được thêm vào cart
-	@PostMapping("addproduct")
-	public ResponseEntity<?> addCartWithProduct(@RequestBody HashMap<String, String> addCartRequest){
-		try {
-			String key[]= {"productId","userId","qty","price"};
-			if(ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
-				
-			}
-			
-			long productId=Long.parseLong(addCartRequest.get("productId"));
-			long userId=Long.parseLong(addCartRequest.get("userId"));
-			int qty=Integer.parseInt(addCartRequest.get("qty"));
-			double price=Double.parseDouble(addCartRequest.get("price"));
-			
-			List<AddToCart> obj=cartService.addCartByUserIdAndProductId(productId,userId,qty,price);
-			return ResponseEntity.ok(obj);
-			
-		} catch (Exception e) {
 
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));
-		}
-	}
-	
-	//lấy ra cart với userid tương ứng
-	@GetMapping("getCartsByUserId")
-	public ResponseEntity<?> getCartByUserId(@RequestBody HashMap<String, String> getCartRequest){
-		
-		
-		try {
-			String key[]= {"userId"};
-			if(ShoppingConfiguration.validationWithHashMap(key, getCartRequest)) {
-				
-			}
-			List<AddToCart> obj=cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
-			return ResponseEntity.ok(obj);
-		} catch (Exception e) {
+    @Autowired
+    CartService cartService;
 
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));
-		}
-	}
-	
-	//Xóa product ra khỏi cart
-	@DeleteMapping("removeProductFromCart")
-	public ResponseEntity<?> removeCartWithProductId(@RequestBody HashMap<String, String> removeCartRequest){
+    @PostMapping("addproduct")
+    public ResponseEntity<?> addCartWithProduct(@RequestBody HashMap<String, String> addCartRequest) {
+        try {
+            String key[] = {"productId", "userId", "qty", "price"};
+            if (ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
+                // validation logic here
+            }
 
-		try {
-			String key[]= {"userId","cartId"};
-			if(ShoppingConfiguration.validationWithHashMap(key, removeCartRequest)) {
-				
-			}
-			List<AddToCart> obj=cartService.removeCartByUserId(Long.parseLong(removeCartRequest.get("userId")),Long.parseLong(removeCartRequest.get("cartId")));
-			return ResponseEntity.ok(obj);
-		} catch (Exception e) {
+            long productId = Long.parseLong(addCartRequest.get("productId"));
+            long userId = Long.parseLong(addCartRequest.get("userId"));
+            int qty = Integer.parseInt(addCartRequest.get("qty"));
+            double price = Double.parseDouble(addCartRequest.get("price"));
 
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));
-		}
-	}
-	
-	//update số lượng product trong cart
-	@PutMapping("updateQtyForCart")
-	public ResponseEntity<?> updateQtyForCart(@RequestBody HashMap<String, String> addCartRequest){
-		try {
-			String key[]= {"productId","userId","qty","price"};
-			if(ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
-				
-			}
+            List<AddtoCart> obj = cartService.addCartbyUserIdAndProductId(productId, userId, qty, price);
+            return ResponseEntity.ok(obj);
 
-			long cartId=Long.parseLong(addCartRequest.get("cartId"));
-			long userId=Long.parseLong(addCartRequest.get("userId"));
-			int qty=Integer.parseInt(addCartRequest.get("qty"));
-			double price=Double.parseDouble(addCartRequest.get("price"));
-			
-			cartService.updateQtyByCartId(cartId,qty,price);
-			List<AddToCart> obj=cartService.getCartByUserId(userId);
-			return ResponseEntity.ok(obj);
-			
-		} catch (Exception e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
+        }
+    }
 
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));
-		}
-	}
-	
-	@RequestMapping("getCartsByUserId")
-	public ResponseEntity<?> getCartsByUserId(@RequestBody  HashMap<String, String> getCartRequest){
-		try {
-			String key[]= {"userId"};
-			if(ShoppingConfiguration.validationWithHashMap(key, getCartRequest)) {
-				
-			}
-			List<AddToCart> obj=cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
-			return ResponseEntity.ok(obj);
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
-		}
-	}
+    @DeleteMapping("removeProductFromCart")
+    public ResponseEntity<?> removeCartWithProductId(@RequestBody HashMap<String, String> removeCartRequest) {
+        try {
+            String key[] = {"userId", "cartId"};
+            if (ShoppingConfiguration.validationWithHashMap(key, removeCartRequest)) {
+                // validation logic here
+            }
+            List<AddtoCart> obj = cartService.removeCartByUserId(Long.parseLong(removeCartRequest.get("userId")),
+                    Long.parseLong(removeCartRequest.get("cartId")));
+            return ResponseEntity.ok(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
+        }
+    }
+
+    @PutMapping("updateQtyForCart")
+    public ResponseEntity<?> updateQtyForCart(@RequestBody HashMap<String, String> addCartRequest) {
+        try {
+            String key[] = {"productId", "userId", "qty", "price"};
+            if (ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
+                // validation logic here
+            }
+
+            long cartId = Long.parseLong(addCartRequest.get("cartId"));
+            long userId = Long.parseLong(addCartRequest.get("userId"));
+            int qty = Integer.parseInt(addCartRequest.get("qty"));
+            double price = Double.parseDouble(addCartRequest.get("price"));
+
+            cartService.updateQtyByCartId(cartId, qty, price);
+            List<AddtoCart> obj = cartService.getCartByUserId(userId);
+            return ResponseEntity.ok(obj);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
+        }
+    }
+
+    @GetMapping("getCartsByUserId")
+    public ResponseEntity<?> getCartsByUserId(@RequestBody HashMap<String, String> getCartRequest) {
+        try {
+            String keys[] = {"userId"};
+            if (ShoppingConfiguration.validationWithHashMap(keys, getCartRequest)) {
+                // validation logic here
+            }
+            List<AddtoCart> obj = cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
+            return ResponseEntity.ok(obj);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
+        }
+    }
 }
