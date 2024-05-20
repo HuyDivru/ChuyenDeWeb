@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.shopbanquanao.model.AddToCart;
 import com.shopbanquanao.model.CheckoutCart;
@@ -13,7 +14,7 @@ import com.shopbanquanao.productService.ProductServies;
 import com.shopbanquanao.repository.AddToCartRepo;
 import com.shopbanquanao.repository.CheckoutRepo;
 
-
+@Service
 public class CartServiceImpl implements CartService{
 	
 	@Autowired

@@ -2,9 +2,12 @@ package com.shopbanquanao.CartService;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.shopbanquanao.model.AddToCart;
 import com.shopbanquanao.model.CheckoutCart;
 
+@Service
 public interface CartService {
 
 	List<AddToCart> addCartByUserIdAndProductId(long productId, long userId, int qty, double price) throws Exception;
