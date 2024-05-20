@@ -7,17 +7,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.shopbanquanao.model.AddToCart;
+import com.shopbanquanao.model.CheckoutCart;
 import com.shopbanquanao.model.Products;
 import com.shopbanquanao.productService.ProductServies;
 import com.shopbanquanao.repository.AddToCartRepo;
+import com.shopbanquanao.repository.CheckoutRepo;
 
 
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
 	AddToCartRepo addCartRepo;
-//	@Autowired
-//	CheckoutRepo checkOutRepo;
+	@Autowired
+	CheckoutRepo checkOutRepo;
 	@Autowired
 	ProductServies proServies;
 	
@@ -59,6 +61,44 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void updateQtyByCartId(long cartId, int qty, double price) throws Exception{
 		addCartRepo.updateQtyByCartId(cartId, price, qty);
+	}
+
+	@Override
+	public Boolean checkTotalAmountAgainstCart(double totalAmount, long userId) {
+		double total_amout=addCartRepo.getTotalAmountByUserId(userId);
+		if(total_amout==totalAmount) {
+			return true;
+		}
+		System.out.println("Error from request "+total_amout+ "--db---" +totalAmount);
+		return false;
+	}
+
+	@Override
+	public List<CheckoutCart> saveProductsForCheckout(List<CheckoutCart> tmp) throws Exception {
+		try {
+			long user_id=tmp.get(0).getUser_id();
+			if(tmp.size()>0) {
+				checkOutRepo.saveAll(tmp);
+				this.removeAllCartByUserId(user_id);
+				return this.getAllCheckoutByUserId(user_id);
+			}
+			else {
+				throw new Exception("Should not be empty");
+			}
+		} catch (Exception e) {
+			throw new Exception("Eror while checkout"+e.getMessage());
+		}
+	}
+
+	@Override
+	public List<AddToCart> removeAllCartByUserId(long userId) {
+		addCartRepo.deleteAllCartByUserId(userId);
+		return null;
+	}
+
+	@Override
+	public List<CheckoutCart> getAllCheckoutByUserId(long userId) {
+		return checkOutRepo.getByuserId(userId);
 	}
 
 }

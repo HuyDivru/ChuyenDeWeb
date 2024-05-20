@@ -3,6 +3,7 @@ package com.shopbanquanao.CartService;
 import java.util.List;
 
 import com.shopbanquanao.model.AddToCart;
+import com.shopbanquanao.model.CheckoutCart;
 
 public interface CartService {
 
@@ -13,5 +14,13 @@ public interface CartService {
 	List<AddToCart> removeCartByUserId(long cartId, long userId) throws Exception;
 
 	void updateQtyByCartId(long cartId, int qty, double price) throws Exception;
+
+	Boolean checkTotalAmountAgainstCart(double total_amt, long userId);
+
+	List<CheckoutCart> saveProductsForCheckout(List<CheckoutCart> tmp) throws Exception;
+	
+	List<AddToCart> removeAllCartByUserId(long userId);
+	
+	List<CheckoutCart> getAllCheckoutByUserId(long userId);
 
 }

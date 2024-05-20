@@ -17,7 +17,7 @@ import com.shopbanquanao.CartService.CartService;
 import com.shopbanquanao.JWTConfiguration.ShoppingConfiguration;
 import com.shopbanquanao.controller.requestPojo.ApiResponse;
 import com.shopbanquanao.model.AddToCart;
-
+//restfullapi
 @RestController
 @RequestMapping("api/addtocart")
 public class AddToCartController {
@@ -108,6 +108,20 @@ public class AddToCartController {
 
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));
+		}
+	}
+	
+	@GetMapping("getCartsByUserId")
+	public ResponseEntity<?> getCartsByUserId(@RequestBody  HashMap<String, String> getCartRequest){
+		try {
+			String key[]= {"userId"};
+			if(ShoppingConfiguration.validationWithHashMap(key, getCartRequest)) {
+				
+			}
+			List<AddToCart> obj=cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
+			return ResponseEntity.ok(obj);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
 		}
 	}
 }
