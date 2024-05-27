@@ -1,0 +1,55 @@
+ .hg{
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(224, 230, 224);
+ }
+.card-header{
+  font-size: 30px;
+  color: rgb(50, 50, 184);
+}
+  
+ .tieude{
+    padding: 19px;
+    text-align: center;
+    background: #174e97;
+    color: rgb(248, 248, 248);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .adminna a{
+    float: center;
+    color: rgb(7, 240, 77);
+    text-align: center;
+    padding: 19px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 4px;
+ 
+  }
+  .tieude a.logo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .tieude a:hover {
+   
+    color: rgb(238, 231, 231);
+  }
+  .huy{
+    float:left;
+    font-size: 13px;
+  }
+  .nut{
+    background-color: red;
+    margin-left: 40px;
+  }
+  .col{
+    color: #174e97;
+  }
+   .toilahung{
+    color: #174e97;
+    margin: 40px;
+   }
+   .hungnguyen{
+    background-color: #174e97;
+   }
