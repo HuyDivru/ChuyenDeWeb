@@ -86,7 +86,7 @@ public class AddToCartController {
         }
     }
 
-    @GetMapping("getCartsByUserId")
+    @PostMapping("getCartsByUserId")
     public ResponseEntity<?> getCartsByUserId(@RequestBody HashMap<String, String> getCartRequest) {
         try {
             String keys[] = {"userId"};

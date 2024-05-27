@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class OrderController {
 	@Autowired
 	CartService cartService;
 	
-	@RequestMapping("checkout_order")
+	@PostMapping("checkout_order")
 	public ResponseEntity<?> checkout_order(@RequestBody HashMap<String, String> addCartRequest){
 		try {
 			String keys[]= {"userId","total_price","pay_type","deliveryAddress"};
@@ -65,11 +66,14 @@ public class OrderController {
 		Random r=new Random(System.currentTimeMillis());
 		return 10000+r.nextInt(20000);
 	}
-	@RequestMapping("getOrdersByUserId")
+	@PostMapping("getOrdersByUserId")
 	public ResponseEntity<?> getOrdersByUserId(@RequestBody HashMap<String, String> orderRequest){
 		try {
 			String keys[]= {"userId"};
-			return ResponseEntity.ok(new ApiResponse("Thanh toán thành công",""));
+			ShoppingConfiguration.validationWithHashMap(keys, orderRequest);
+			long userId=Long.parseLong(orderRequest.get("userId"));
+			List<CheckoutCart> orders=cartService.getAllCheckoutByUserId(userId);
+			return ResponseEntity.ok(orders);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(),""));

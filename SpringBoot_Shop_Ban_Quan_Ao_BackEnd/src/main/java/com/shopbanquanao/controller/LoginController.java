@@ -40,7 +40,7 @@ public class LoginController {
 	  JwtTokenProvider tokenProvider;
       private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-      @RequestMapping("/status")//post and get
+     @RequestMapping("/status")//post and get
   	public ResponseEntity<?> serverStatus() {
     	  return new ResponseEntity<>(new ApiResponse("Server is running.", ""), HttpStatus.OK);
    }

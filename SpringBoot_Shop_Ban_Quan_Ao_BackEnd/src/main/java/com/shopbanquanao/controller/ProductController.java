@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class ProductController{
 	public List<Category> getAllCategory(){
 		return productServies.getAllCategory();
 	}
-	@GetMapping("getProductsByCategory")
+	@RequestMapping("getProductsByCategory")
 	public List<Products> getProductsByCategory(@RequestBody HashMap<String, String> request) {
 		String category_id=request.get("cat_id");
 		return productServies.getProductsByCategory(category_id);

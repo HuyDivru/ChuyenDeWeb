@@ -77,16 +77,21 @@ public class SecurityConfig {
 	                    		antMatcher("/**/*.js"))
 	                        .permitAll()
 	                        .requestMatchers(antMatcher("/api/status/**"),antMatcher("/api/login/**"),antMatcher("/api/signup/**")).permitAll()
-	                        .requestMatchers(antMatcher("/checkout"),antMatcher("/listProduct"),antMatcher("/saveProduct")).permitAll()
+	                        .requestMatchers(antMatcher("/checkOut/**"),antMatcher("/listProduct/**"),antMatcher("/saveProduct/**"),antMatcher("/editProduct/**")).permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.GET, "/api/status/**"))
 	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.GET, "/checkout"))
 	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.POST, "/listProduct"))
 	                        .permitAll()
+	                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/deleteProduct/**"))
+	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.POST, "/saveProduct")).permitAll()
-
-	                       
+	                        .requestMatchers(antMatcher("/api/product/**")).permitAll()
+	                        .requestMatchers(antMatcher("/api/order/**")).permitAll()
+	                        .requestMatchers(antMatcher("/api/addtocart/**")).permitAll()
+	                        
+	                        
 	                      .anyRequest()
 	                        .authenticated());
 	        
