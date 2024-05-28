@@ -47,7 +47,7 @@ public class AdminProductServiceImpl implements AdminProductService{
 		oldProduct.setPrice(product.getPrice());
 		oldProduct.setAdded_on(product.getAdded_on());
 		oldProduct.setCategory_id(product.getCategory_id());
-		
+		oldProduct.setImage_url(product.getImage_url());
 		
 		return productRepo.save(oldProduct);
 	}

@@ -12,10 +12,14 @@ import lombok.NoArgsConstructor;
 @Table(name="products")
 public class Products {
 	
-	@Id
-	long id;
-	String name,added_on,category_id;
-	double price;
+	 @Id
+	 private long id;
+	 private String name;
+	 private double price;
+	 private String image_url;
+	 private String added_on;
+	 private String category_id;
+
 	public long getId() {
 		return id;
 	}
@@ -46,5 +50,13 @@ public class Products {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public String getImage_url() {
+		return image_url;
+	}
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+	
+	
 	
 }

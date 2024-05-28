@@ -36,11 +36,15 @@ public class ProductController{
 	public List<Category> getAllCategory(){
 		return productServies.getAllCategory();
 	}
-	@RequestMapping("getProductsByCategory")
-	public List<Products> getProductsByCategory(@RequestBody HashMap<String, String> request) {
-		String category_id=request.get("cat_id");
-		return productServies.getProductsByCategory(category_id);
+	@GetMapping("getProductsByCategory")
+	public List<Products> getProductsByCategory(@RequestParam("cat_id") String category_id) {
+	    return productServies.getProductsByCategory(category_id);
 	}
+	
+	@GetMapping("getProductDetails/{id}") public Products getProductDetails(@PathVariable("id") long id) throws Exception {
+		return productServies.getProductsById(id);
+	}
+	
 	@GetMapping(value = "/getimage/{img_name}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody byte[] getImageWithMediaType(@PathVariable("img_name") String img_name) throws IOException {
 	    InputStream in = getClass().getResourceAsStream("/images/" + img_name);
