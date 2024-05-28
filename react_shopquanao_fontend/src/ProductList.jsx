@@ -23,7 +23,7 @@ function ProductList() {
 
     return (
         <div className="product-list">
-            <h2>Featured Products</h2>
+            <h2>Tất Cả Sản Phẩm</h2>
             <div className="row">
                 {products.map(product => (
                     <div className="col-md-3 col-sm-4 col-xs-6 pro-loop" key={product.id}>

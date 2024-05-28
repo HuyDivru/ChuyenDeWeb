@@ -7,10 +7,11 @@ import Menu from './Menu';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'; // Thêm Routes vào từ import
 import Login from './Login';
 import Register from './Register';
-
+import ProductDetail from './ProductDetail';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
         </Routes>
       </Router>
     </div>

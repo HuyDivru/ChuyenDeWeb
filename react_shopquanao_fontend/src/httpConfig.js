@@ -31,9 +31,11 @@ export function httpPostwithToken(url, param) {
     });
 }
 
+
 export function httpDelete(url, param) {
     return axios.delete(BASE_URLr + url, {
         headers: { 'Content-Type': 'application/json' },
         data: param
     });
 }
+

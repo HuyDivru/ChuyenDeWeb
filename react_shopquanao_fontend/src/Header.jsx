@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 
-import './HomePage.css';
+import './Header.css';
+import { httpPost_t } from './httpConfig';
 
 function Header() {
     const navigate = useNavigate();
-    const { user, logout } = useUser();
+    const { user, logout,token } = useUser();
+    const [cart, setCart] = useState([]);
+
+
+    useEffect(() => {
+        if (user && token) {
+            fetchCartDetails();
+        }
+    }, [user, token]);
+
+    const fetchCartDetails = async () => {
+        try {
+            const response = await httpPost_t(`/addtocart/getCartsByUserId`, { userId: user.id }, token);
+            setCart(response);
+        } catch (error) {
+            console.error("There was an error fetching the cart details!", error);
+        }
+    };
 
     const handleLoginClick = () => {
         navigate('/login');
@@ -20,6 +38,8 @@ function Header() {
         logout();
         navigate('/'); // Redirect to home page after logout
     };
+
+    const cartItemCount = cart.reduce((total, item) => total + item.qty, 0);
 
     return (
         <header className="p-3 bg-primary text-white">
@@ -39,7 +59,7 @@ function Header() {
                                 <div className="header-icon-cart__header cursor-pointer">
                                     <i className="fas fa-shopping-cart"></i>
                                     <span className="count-holder">
-                                        <span className="count">0</span>
+                                        <span className="count">{cartItemCount}</span>
                                     </span>
                                 </div>
                             </div>

@@ -1,0 +1,137 @@
+/* General styles for the header */
+header {
+    background-color: #007bff; /* Màu nền cho header */
+    padding: 0.5rem 0; /* Giảm khoảng cách trên dưới */
+    color: white; /* Màu chữ trắng */
+}
+
+header .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    color: white; /* Màu chữ trắng cho các liên kết */
+    text-decoration: none; /* Không gạch chân */
+}
+
+header a:hover {
+    color: #f8f9fa; /* Màu khi hover */
+}
+
+header .nav {
+    display: flex;
+    gap: 0.5rem; /* Giảm khoảng cách giữa các mục điều hướng */
+}
+
+header .nav-link {
+    color: white;
+    padding: 0.25rem 0.5rem; /* Giảm khoảng đệm cho các liên kết */
+    font-size: 0.875rem; /* Giảm kích thước font */
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+header .nav-link:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    border-radius: 3px; /* Bo tròn góc */
+}
+
+header .header-icon-cart {
+    position: relative;
+}
+
+header .header-icon-cart__header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .header-icon-cart__header i {
+    font-size: 1.25rem; /* Giảm kích thước icon giỏ hàng */
+}
+
+header .count-holder {
+    position: absolute;
+    top: -5px; /* Điều chỉnh vị trí của số lượng */
+    right: -10px;
+    background-color: #ffc107; /* Màu nền của số lượng */
+    color: #000;
+    border-radius: 50%;
+    padding: 0 5px; /* Khoảng đệm xung quanh số lượng */
+    font-size: 0.75rem; /* Giảm kích thước font */
+}
+
+/* Search form styles */
+header form {
+    display: flex;
+    align-items: center;
+}
+
+header form input[type="search"] {
+    background-color: #343a40;
+    border: 1px solid #ced4da;
+    color: white;
+    padding: 0.25rem; /* Giảm khoảng đệm */
+    font-size: 0.875rem; /* Giảm kích thước font */
+    border-radius: 4px;
+}
+
+header form input[type="search"]::placeholder {
+    color: #adb5bd; /* Màu chữ placeholder */
+}
+
+header form input[type="search"]:focus {
+    border-color: #ffc107; /* Màu biên khi focus */
+    outline: none; /* Xóa viền mặc định */
+}
+
+/* User dropdown styles */
+header .dropdown .btn {
+    color: white;
+    border: 1px solid white;
+    font-size: 0.875rem; /* Giảm kích thước font */
+    padding: 0.25rem 0.5rem; /* Giảm padding */
+}
+
+header .dropdown-menu {
+    background-color: #343a40; /* Màu nền của menu dropdown */
+    border: none; /* Xóa viền */
+}
+
+header .dropdown-menu .dropdown-item {
+    color: white; /* Màu chữ */
+    font-size: 0.875rem; /* Giảm kích thước font */
+}
+
+header .dropdown-menu .dropdown-item:hover {
+    background-color: #495057; /* Màu nền khi hover */
+}
+
+/* Button styles */
+header .btn-outline-light {
+    color: white;
+    border-color: white;
+    font-size: 0.875rem; /* Giảm kích thước font */
+    padding: 0.25rem 0.5rem; /* Giảm padding */
+}
+
+header .btn-outline-light:hover {
+    color: #343a40;
+    background-color: white;
+    border-color: white;
+}
+
+header .btn-warning {
+    color: #343a40;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    font-size: 0.875rem; /* Giảm kích thước font */
+    padding: 0.25rem 0.5rem; /* Giảm padding */
+}
+
+header .btn-warning:hover {
+    color: #343a40;
+
+}
