@@ -1,0 +1,70 @@
+/* Login.css */
+
+/* Adjusting font color and size */
+body {
+    color: #555;
+    font-size: 16px;
+}
+
+/* Centering the form */
+form {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+/* Styling form input fields */
+.form-control {
+    border-radius: 25px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #383434; /* Trắng */
+    border: 1px solid #4f5052; /* Viền xám */
+}
+
+/* Styling form labels */
+.form-label {
+    color: #777;
+}
+
+/* Styling the "Remember me" checkbox */
+.form-check-label {
+    color: #777;
+}
+
+/* Styling the "Forgot password?" link */
+a {
+    color: #777;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Centering the "Sign in" button */
+.btn-primary {
+    border-radius: 25px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Centering the social media buttons */
+.text-center {
+    margin-top: 20px;
+}
+
+/* Adjusting the size of social media buttons */
+.btn-link.btn-floating {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+/* Adjusting the size of social media icons */
+.btn-link.btn-floating i {
+    font-size: 24px;
+}

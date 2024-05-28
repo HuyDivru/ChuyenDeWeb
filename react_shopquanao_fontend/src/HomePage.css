@@ -1,0 +1,198 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.header, .footer {
+    background-color: #343a40;
+    color: white;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.form-control-dark {
+    background-color: #343a40;
+    border: none;
+    color: white;
+}
+
+.btn-outline-light {
+    color: white;
+    border-color: white;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: black;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.header-icon-cart {
+    position: relative;
+    margin-left: 15px;
+}
+
+.header-icon-cart__header {
+    cursor: pointer;
+}
+
+.count-holder {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+    color: white;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.dropdown-item:hover {
+    background-color: #ffc107;
+    color: black;
+}
+
+.footer a {
+    color: #6c757d;
+}
+
+.footer a:hover {
+    color: #ffc107;
+}
+
+.footer i {
+    font-size: 1.5rem;
+    color: #6c757d;
+}
+
+.footer i:hover {
+    color: #ffc107;
+}
+
+
+.header {
+    padding: 15px 0;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .d-flex {
+    flex-wrap: nowrap;
+}
+
+.header .nav {
+    margin-left: 30px;
+}
+
+.header .nav-link {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+.product-list {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.product-list h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.pro-loop {
+    margin-bottom: 20px;
+}
+
+.product-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.product-img img:hover {
+    transform: scale(1.05);
+}
+
+.box-pro-detail {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pro-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #dc3545;
+}
+
+.footer {
+    padding: 40px 0;
+    background-color: #343a40;
+    color: white;
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer .nav-link {
+    font-size: 1rem;
+    padding: 0;
+}
+
+.footer form {
+    margin-top: 20px;
+}
+
+.footer form input {
+    margin-bottom: 10px;
+}
+
+.footer .d-flex {
+    align-items: center;
+}
+
+.footer .list-unstyled {
+    display: flex;
+    gap: 20px;
+}
+
+.footer .list-unstyled a {
+    color: #6c757d;
+    font-size: 1.5rem;
+}
