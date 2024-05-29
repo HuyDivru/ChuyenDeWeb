@@ -31,11 +31,31 @@ export function httpPostwithToken(url, param) {
     });
 }
 
+export function httpPutWithToken(url, param, token) {
+    return axios.put(BASE_URL + url, param, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
+}
+
+
 
 export function httpDelete(url, param) {
     return axios.delete(BASE_URLr + url, {
         headers: { 'Content-Type': 'application/json' },
         data: param
+    });
+}
+
+
+export function httpDeleteWithToken(url, param, token) {
+    return axios.delete(BASE_URL + url, param, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     });
 }
 

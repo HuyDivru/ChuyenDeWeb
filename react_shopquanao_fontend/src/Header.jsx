@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 
 import './Header.css';
-import { httpPost_t } from './httpConfig';
+import { httpPost_t, httpPostwithToken } from './httpConfig';
 
 function Header() {
     const navigate = useNavigate();
@@ -19,8 +19,8 @@ function Header() {
 
     const fetchCartDetails = async () => {
         try {
-            const response = await httpPost_t(`/addtocart/getCartsByUserId`, { userId: user.id }, token);
-            setCart(response);
+            const response = await httpPostwithToken(`addtocart/getCartsByUserId`, { userId: user.id }, token);
+            setCart(response.data);
         } catch (error) {
             console.error("There was an error fetching the cart details!", error);
         }

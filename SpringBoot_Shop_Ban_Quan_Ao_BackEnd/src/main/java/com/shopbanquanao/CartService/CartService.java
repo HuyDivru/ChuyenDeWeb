@@ -2,6 +2,7 @@ package com.shopbanquanao.CartService;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.shopbanquanao.model.AddtoCart;
@@ -11,6 +12,7 @@ import com.shopbanquanao.model.CheckoutCart;
 public interface CartService {
 
 	List<AddtoCart> addCartbyUserIdAndProductId(long productId,long userId,int qty,double price) throws Exception;
+	
 	
 	void updateQtyByCartId(long cartId,int qty,double price) throws Exception;
 	

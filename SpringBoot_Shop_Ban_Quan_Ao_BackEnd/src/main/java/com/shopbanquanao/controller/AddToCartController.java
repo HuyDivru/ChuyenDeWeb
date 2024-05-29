@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import com.shopbanquanao.JWTConfiguration.ShoppingConfiguration;
 import com.shopbanquanao.controller.requestPojo.ApiResponse;
 import com.shopbanquanao.model.AddtoCart;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("api/addtocart")
 public class AddToCartController {
@@ -46,7 +49,44 @@ public class AddToCartController {
             return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
         }
     }
+    
+    @PostMapping("addOrUpdateProduct")
+    public ResponseEntity<?> addOrUpdateCartWithProduct(@RequestBody HashMap<String, String> addCartRequest) {
+        try {
+            String key[] = {"productId", "userId", "qty", "price"};
+            if (ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
+                return ResponseEntity.badRequest().body(new ApiResponse("Validation failed for required fields", ""));
+            }
 
+            long productId = Long.parseLong(addCartRequest.get("productId"));
+            long userId = Long.parseLong(addCartRequest.get("userId"));
+            int qty = Integer.parseInt(addCartRequest.get("qty"));
+            double price = Double.parseDouble(addCartRequest.get("price"));
+
+            List<AddtoCart> cartItems = cartService.getCartByUserId(userId);
+            boolean itemExists = false;
+            for (AddtoCart item : cartItems) {
+                if (item.getProduct().getId() == productId) {
+                    cartService.updateQtyByCartId(item.getId(), item.getQty() + qty, price);
+                    itemExists = true;
+                    break;
+                }
+            }
+
+            if (!itemExists) {
+                cartService.addCartbyUserIdAndProductId(productId, userId, qty, price);
+            }
+
+            List<AddtoCart> updatedCartItems = cartService.getCartByUserId(userId);
+            return ResponseEntity.ok(updatedCartItems);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
+        }
+    }
+
+    
     @DeleteMapping("removeProductFromCart")
     public ResponseEntity<?> removeCartWithProductId(@RequestBody HashMap<String, String> removeCartRequest) {
         try {
@@ -69,6 +109,7 @@ public class AddToCartController {
             String key[] = {"productId", "userId", "qty", "price"};
             if (ShoppingConfiguration.validationWithHashMap(key, addCartRequest)) {
                 // validation logic here
+            	return ResponseEntity.badRequest().body(new ApiResponse("Validation failed for required fields", ""));
             }
 
             long cartId = Long.parseLong(addCartRequest.get("cartId"));
