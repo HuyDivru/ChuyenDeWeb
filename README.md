@@ -28,3 +28,11 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <p>Bootstrap: Sử dụng các thành phần Bootstrap để tạo giao diện nhất quán và hấp dẫn.</p>
 <p>Axios: Sử dụng Axios để gọi các API RESTful từ backend, lấy danh sách sản phẩm và các thông tin cần thiết.</p>
 <p>Axios: Sử dụng Axios để gọi các API RESTful từ backend, lấy danh sách sản phẩm và các thông tin cần thiết.</p>
+<br>
+<h2>Các Thành Phần Chính của Trang Web</h2>
+<h4>Trang Chủ</h4>
+<h4>Danh Mục Sản Phẩm</h4>
+<h4>Chi Tiết Sản Phẩm</h4>
+<h4>Giỏ Hàng và Thanh Toán</h4>
+<h4>Trang Admin</h4>
+<h4>Chính Sách Khách Hàng</h4>
