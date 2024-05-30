@@ -36,3 +36,5 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <h4>Giỏ Hàng và Thanh Toán</h4>
 <h4>Trang Admin</h4>
 <h4>Chính Sách Khách Hàng</h4>
+<h2>VIDEO DEMO</h2>
+<p>Coming Soon 😊</p>
