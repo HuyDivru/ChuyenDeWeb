@@ -37,8 +37,8 @@ const fetchListUser = async () => {
                         <th scope="row">{index + 1}</th>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
-                        <td>{user.created_at}</td>
                         <td>{user.mobile}</td>
+                        <td>{user.created_at}</td> 
                     </tr>
                 ))}
             </tbody>
