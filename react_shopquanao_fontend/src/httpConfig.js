@@ -41,6 +41,12 @@ export function httpPostwithToken(url, param) {
     });
 }
 
+export function httpPut(url, param) {
+    return axios.put(BASE_URLr + url, {
+        headers: { 'Content-Type': 'application/json' },
+        data: param
+    });
+}
 export function httpPutWithToken(url, param, token) {
     return axios.put(BASE_URL + url, param, {
         headers: {
