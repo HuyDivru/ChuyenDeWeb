@@ -25,4 +25,7 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <br>
 <h4>7. RESTful API</h4>
 <p>Các API RESTful được xây dựng để phục vụ cho việc tương tác giữa frontend và backend. Chúng giúp ứng dụng linh hoạt và dễ mở rộng, đồng thời hỗ trợ tích hợp với các dịch vụ bên thứ ba.</p>
-<br>
+<hr>
+<h3>FontEnd</h3>
+<h4>React</h4>
+<p>React.js được sử dụng để xây dựng giao diện người dùng. React giúp tạo ra các thành phần giao diện tương tác, nhanh chóng và động. Nó cũng giúp cải thiện hiệu suất và trải nghiệm người dùng.</p>
