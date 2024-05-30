@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.shopbanquanao.model.AddtoCart;
 
+
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -48,4 +49,15 @@ public interface AddToCartRepo  extends JpaRepository<AddtoCart, Long>{
 	@Query("update AddtoCart addCart set addCart.qty=:qty,addCart.price=:price WHERE addCart.id=:cart_id")
 	void updateQtyByCartId(@Param("cart_id")Long cart_id,@Param("price")double price,@Param("qty")Integer qty);
 	
+	
+	@Query("SELECT cart FROM AddtoCart cart JOIN FETCH cart.product WHERE cart.user_id = :user_id")
+    List<AddtoCart> getCartWithProductInfoByUserId(@Param("user_id") Long user_id);
+	
+	
+	
+//	@Modifying
+//    @Transactional
+//	 @Query("SELECT a.qty as qty, a.price as price, p.name as productName, p.image_url as productImageUrl " +
+//	           "FROM AddToCart a JOIN a.product p WHERE a.user_id = :user_id")
+//	List<CartItemProjection> findCartItemsByUserId(@Param("user_id") Long user_id);
 }

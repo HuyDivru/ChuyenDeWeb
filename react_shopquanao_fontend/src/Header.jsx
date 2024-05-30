@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
 
-import './Header.css';
+import './HomePage.css';
 import { httpPost_t, httpPostwithToken } from './httpConfig';
 
 function Header() {
@@ -39,6 +39,22 @@ function Header() {
         navigate('/'); // Redirect to home page after logout
     };
 
+    const handleCartItem = () => {
+        if (!user) {
+            alert("Lỗi Kết Nối Api! Vui lòng đăng nhập!");
+            navigate('/login');
+            return;
+        }
+        navigate("/cartItem");
+    }
+
+    const handleAdmin = () => {
+        navigate('/admin'); // Redirect to home page after logout
+    };
+
+    const handleHome = () => {
+        navigate('/'); // Redirect to home page after logout
+    };
     const cartItemCount = cart.reduce((total, item) => total + item.qty, 0);
 
     return (
@@ -53,11 +69,12 @@ function Header() {
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/" className="nav-link px-2 text-white">Trang Chủ</a></li>
                         <li><a href="#" className="nav-link px-2 text-white">Quần</a></li>
-                        <li><a href="#" className="nav-link px-2 text-white">Áo</a></li>
+                        <li><a href="#"  className="nav-link px-2 text-white">Áo</a></li>
+                        <li><a href="/admin"  className="nav-link px-2 text-white">Truy Cập Admin</a></li>
                         <li>
                             <div className="header-icon-cart position-relative">
                                 <div className="header-icon-cart__header cursor-pointer">
-                                    <i className="fas fa-shopping-cart"></i>
+                                    <i className="fas fa-shopping-cart" onClick={handleCartItem}></i>
                                     <span className="count-holder">
                                         <span className="count">{cartItemCount}</span>
                                     </span>

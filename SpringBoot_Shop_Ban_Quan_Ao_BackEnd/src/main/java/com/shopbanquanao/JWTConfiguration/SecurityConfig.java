@@ -90,8 +90,7 @@ public class SecurityConfig {
 	                        .requestMatchers(antMatcher("/api/product/**")).permitAll()
 	                        .requestMatchers(antMatcher("/api/order/**")).permitAll()
 	                        .requestMatchers(antMatcher("/api/addtocart/**")).permitAll()
-	                        .requestMatchers(antMatcher(HttpMethod.PUT,"/api/addtocart/updateQtyForCart")).permitAll()
-	                        
+	                        .requestMatchers(antMatcher("/api/addtocart/user/**")).permitAll()
 	                        
 	                      .anyRequest()
 	                        .authenticated());

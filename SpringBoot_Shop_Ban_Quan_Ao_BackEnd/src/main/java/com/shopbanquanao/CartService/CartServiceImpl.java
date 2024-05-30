@@ -102,5 +102,17 @@ public class CartServiceImpl implements CartService{
 		addCartRepo.deleteAllCartByUserId(userId);
 		return null;
 	}
+	
+	@Override
+    public List<AddtoCart> getCartWithProductInfoByUserId(Long userId) {
+        return addCartRepo.getCartWithProductInfoByUserId(userId);
+    }
 
+//	@Override
+//	public List<CartItemProjection> getCartItemsByUserIdProjection(long userId) {
+//		return addCartRepo.findCartItemsByUserId(userId);
+//	}
+//
+//	
+	
 }

@@ -1,55 +1,54 @@
+/* HomePage.css */
+.homepage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-body {
-    font-family: Arial, sans-serif;
+.homepage-header {
+    flex-shrink: 0;
+}
+
+.homepage-carousel {
+    flex-shrink: 0;
+    margin-bottom: 30px;
+}
+
+.homepage-products {
+    flex-grow: 1;
+    padding: 20px;
     background-color: #f8f9fa;
 }
 
-.header, .footer {
-    background-color: #343a40;
+.homepage-footer {
+    flex-shrink: 0;
+    background-color: #f8f9fa;
+}
+
+
+/* Header.css */
+header {
+    background-color: #007bff; /* Bootstrap primary color */
     color: white;
+    padding: 15px 0;
 }
 
-.nav-link {
-    color: white !important;
-}
-
-.nav-link:hover {
-    color: #ffc107 !important;
-}
-
-.form-control-dark {
-    background-color: #343a40;
-    border: none;
+header a {
     color: white;
+    text-decoration: none;
 }
 
-.btn-outline-light {
+header .nav-link {
     color: white;
-    border-color: white;
-}
-
-.btn-outline-light:hover {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: black;
-}
-
-.btn-warning {
-    background-color: #ffc107;
-    border-color: #ffc107;
-}
-
-.btn-warning:hover {
-    background-color: #e0a800;
-    border-color: #d39e00;
+    margin-right: 15px;
 }
 
 .header-icon-cart {
     position: relative;
-    margin-left: 15px;
 }
 
-.header-icon-cart__header {
+.header-icon-cart__header .fa-shopping-cart {
+    font-size: 24px;
     cursor: pointer;
 }
 
@@ -57,67 +56,34 @@ body {
     position: absolute;
     top: -5px;
     right: -10px;
-    background-color: #dc3545;
+    background: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
+    padding: 2px 5px;
 }
 
 .dropdown-menu {
-    background-color: #343a40;
-    color: white;
-}
-
-.dropdown-item {
-    color: white;
-}
-
-.dropdown-item:hover {
-    background-color: #ffc107;
-    color: black;
-}
-
-.footer a {
-    color: #6c757d;
-}
-
-.footer a:hover {
-    color: #ffc107;
-}
-
-.footer i {
-    font-size: 1.5rem;
-    color: #6c757d;
-}
-
-.footer i:hover {
-    color: #ffc107;
+    right: 0;
+    left: auto;
 }
 
 
-.header {
-    padding: 15px 0;
+/* Carousel.css */
+/* .item-owl {
+    margin-bottom: 30px;
 }
 
-.header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.carousel-inner img {
+    width: 100%;
+    height: auto;
 }
 
-.header .d-flex {
-    flex-wrap: nowrap;
-}
-
-.header .nav {
-    margin-left: 30px;
-}
-
-.header .nav-link {
-    padding: 10px 15px;
-    font-size: 1rem;
-    font-weight: 500;
-}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+} */
 
 
 .product-list {
@@ -158,41 +124,63 @@ body {
     color: #dc3545;
 }
 
-.footer {
-    padding: 40px 0;
-    background-color: #343a40;
-    color: white;
+
+/* ProductList.css */
+/* .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
 }
 
-.footer h5 {
-    font-size: 1.2rem;
-    font-weight: 700;
+.product-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+} */
+
+
+
+
+/* Footer.css */
+footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+}
+
+footer h5 {
+    color: #007bff; /* Bootstrap primary color */
     margin-bottom: 20px;
 }
 
-.footer .nav-link {
-    font-size: 1rem;
-    padding: 0;
-}
-
-.footer form {
-    margin-top: 20px;
-}
-
-.footer form input {
-    margin-bottom: 10px;
-}
-
-.footer .d-flex {
-    align-items: center;
-}
-
-.footer .list-unstyled {
-    display: flex;
-    gap: 20px;
-}
-
-.footer .list-unstyled a {
+footer a {
     color: #6c757d;
-    font-size: 1.5rem;
+    text-decoration: none;
 }
+
+footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+footer .social-icons a {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+footer .social-icons a:hover {
+    color: #007bff;
+}
+
+

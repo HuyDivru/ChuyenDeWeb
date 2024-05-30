@@ -8,12 +8,20 @@ import Carousel from "./Carousel";
 
 function HomePage() {
     return (
-        <React.Fragment>
-            <Header />
-            <Carousel/>
-            <ProductList />
-            <Footer />
-        </React.Fragment>
+        <div className="homepage">
+            <div className="homepage-header">
+                <Header />
+            </div>
+            <div className="homepage-carousel">
+                <Carousel />
+            </div>
+            <div className="homepage-products">
+                <ProductList />
+            </div>
+            <div className="homepage-footer">
+                <Footer />
+            </div>
+        </div>
     );
 }
 

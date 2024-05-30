@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
-
 import com.shopbanquanao.model.AddtoCart;
 import com.shopbanquanao.model.CheckoutCart;
 
@@ -27,4 +26,10 @@ public interface CartService {
 	List<CheckoutCart> getAllCheckoutByUserId(long userId);
 	
 	List<CheckoutCart> saveProductsForCheckout(List<CheckoutCart> tmp)  throws Exception;
+	
+	
+	List<AddtoCart> getCartWithProductInfoByUserId(Long userId);
+	
+	//
+//	List<CartItemProjection> getCartItemsByUserIdProjection(long userId);
 }

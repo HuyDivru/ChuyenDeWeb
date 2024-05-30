@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,7 @@ public class AddToCartController {
         }
     }
     
+    //thêm sản phẩm vào giỏ hàng và update lại nếu nó đã tồn tại
     @PostMapping("addOrUpdateProduct")
     public ResponseEntity<?> addOrUpdateCartWithProduct(@RequestBody HashMap<String, String> addCartRequest) {
         try {
@@ -85,7 +87,12 @@ public class AddToCartController {
             return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
         }
     }
-
+    //Lấy sản phẩm với user trong cart
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<AddtoCart>> getCartWithProductInfoByUserId(@PathVariable Long userId) {
+        List<AddtoCart> cartItems = cartService.getCartWithProductInfoByUserId(userId);
+        return ResponseEntity.ok(cartItems);
+    }
     
     @DeleteMapping("removeProductFromCart")
     public ResponseEntity<?> removeCartWithProductId(@RequestBody HashMap<String, String> removeCartRequest) {
@@ -140,4 +147,19 @@ public class AddToCartController {
             return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
         }
     }
+    
+    
+//    @PostMapping("getCartsByUserId")
+//    public ResponseEntity<List<CartItemProjection>> getCartsByUserId(@RequestBody HashMap<String, String> getCartRequest) {
+//        try {
+//            String keys[] = {"userId"};
+//            if (ShoppingConfiguration.validationWithHashMap(keys, getCartRequest)) {
+//                // validation logic here
+//            }
+//            List<CartItemProjection> obj = cartService.getCartItemsByUserIdProjection(Long.parseLong(getCartRequest.get("userId")));
+//            return ResponseEntity.ok(obj);
+//        } catch (Exception e) {
+//            return ResponseEntity.badRequest().body(null);
+//        }
+//    }
 }
