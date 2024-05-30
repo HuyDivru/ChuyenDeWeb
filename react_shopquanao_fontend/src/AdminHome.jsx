@@ -46,50 +46,19 @@ function AdminHome() {
                     <div className="tab-container mt-4">
                         <ul className="nav nav-tabs flex-column flex-sm-row">
                             <li className="nav-item">
-                                <a 
-                                    className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`} 
-                                    onClick={() => setActiveTab('tab1')}
-                                    href="#tab1"
-                                >
-                                    Quản Lý Đơn Hàng
-                                </a>
+                                <a className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`} onClick={() => setActiveTab('tab1')} href="#tab1">Quản Lý Đơn Hàng</a>
                             </li>
                             <li className="nav-item">
-                                <a 
-                                    className={`nav-link ${activeTab === 'tab2' ? '' : ''}`} 
-                                    onClick={() => setActiveTab('tab2')}
-                                    href="#tab2"
-                                >
-                                    Quản Lý User
-                                </a>
+                                <a className={`nav-link ${activeTab === 'tab2' ? 'active' : ''}`} onClick={() => setActiveTab('tab2')} href="#tab2">Quản Lý User</a>
                             </li>
                             <li className="nav-item">
-                                <a 
-                                    className={`nav-link ${activeTab === 'tab3' ? '' : ''}`} 
-                                    onClick={() => setActiveTab('tab3')}
-                                    href="#tab3"
-                                >
-                                    Quản Lý Sản Phẩm
-                                </a>
+                                <a className={`nav-link ${activeTab === 'tab3' ? 'active' : ''}`} onClick={() => setActiveTab('tab3')} href="#tab3">Quản Lý Sản Phẩm</a>
                             </li>
                         </ul>
                         <div className="tab-content mt-3">
-                            {activeTab === 'tab1' && (
-                                <div id="tab1" className="container tab-pane active"><br />
-                                    <AdminOrder />
-                                </div>
-                            )}
-                            {activeTab === 'tab2' && (
-                                <div id="tab2" className="container tab-pane fade"><br />
-                                    <AdminUser />
-                                </div>
-                            )}
-                            {activeTab === 'tab3' && (
-                                <div id="tab3" className="container tab-pane fade"><br />
-                                    <h3>Tab 3</h3>
-                                    <p>Content for Tab 3.</p>
-                                </div>
-                            )}
+                            {activeTab === 'tab1' && <div id="tab1" className="container tab-pane active"><br /><AdminOrder/></div>}
+                            {activeTab === 'tab2' && <div id="tab2" className="container tab-pane active"><br /><AdminUser/></div>}
+                            {activeTab === 'tab3' && <div id="tab3" className="container tab-pane active"><br /><h3>Tab 3</h3><p>Content for Tab 3.</p></div>}
                         </div>
                     </div>
                 </div>

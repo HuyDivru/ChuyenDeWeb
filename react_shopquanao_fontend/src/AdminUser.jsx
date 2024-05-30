@@ -7,8 +7,8 @@ function AdminUser(){
 
 
     useEffect(() => {
-    fetchListUser();
-    }, []);
+        fetchListUser();
+    },[]);
 
 
 const fetchListUser = async () => {
