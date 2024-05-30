@@ -2,6 +2,8 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminOrder from './AdminOrder';
+
 
 function AdminHome() {
 
@@ -31,7 +33,7 @@ function AdminHome() {
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Trang chủ</a>
+                                    <a className="nav-link" href="/">Trang chủ</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Đặc trưng</a>
@@ -56,8 +58,7 @@ function AdminHome() {
                         </ul>
                         <div className="tab-content mt-3">
                             <div id="tab1" className="container tab-pane active"><br />
-                                <h3>Quản Lý Đơn Hàng</h3>
-                                <p>Content for Tab 1.</p>
+                                <AdminOrder/>
                             </div>
                             <div id="tab2" className="container tab-pane fade"><br />
                                 <h3>Tab 2</h3>
