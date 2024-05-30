@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminOrder from './AdminOrder';
 import AdminUser from './AdminUser';
 import AdminProduct from './AdminProduct';
+import AddProduct from './AddProduct';
 
 function AdminHome() {
     const [activeTab, setActiveTab] = useState('tab1');
@@ -63,7 +64,7 @@ function AdminHome() {
                             {activeTab === 'tab1' && <div id="tab1" className="container tab-pane active"><br /><AdminOrder/></div>}
                             {activeTab === 'tab2' && <div id="tab2" className="container tab-pane active"><br /><AdminUser/></div>}
                             {activeTab === 'tab3' && <div id="tab3" className="container tab-pane active"><br /><AdminProduct/></div>}
-                            {activeTab === 'tab4' && <div id="tab4" className="container tab-pane active"><br /><AdminProduct/></div>}
+                            {activeTab === 'tab4' && <div id="tab4" className="container tab-pane active"><br /><AddProduct/></div>}
                         </div>
                     </div>
                 </div>

@@ -2,8 +2,12 @@ package com.shopbanquanao.model;
 
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -57,6 +61,12 @@ public class Products {
 		this.image_url = image_url;
 	}
 	
-	
+	//tự tạo ngày khi thêm sản phẩm
+	 @PrePersist
+	 protected void onCreate() {
+		 if (this.added_on == null || this.added_on.isEmpty()) {
+	            this.added_on = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	     }
+	 }
 	
 }
