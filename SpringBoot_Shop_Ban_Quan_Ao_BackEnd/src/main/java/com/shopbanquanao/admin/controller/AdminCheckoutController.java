@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopbanquanao.admin.service.AdminCheckoutService;
+import com.shopbanquanao.userservice.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -16,6 +17,9 @@ public class AdminCheckoutController {
 	
 	@Autowired
 	private AdminCheckoutService checkoutService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/checkOut")
 	public ResponseEntity<?> getAllCheckout(){
@@ -25,5 +29,12 @@ public class AdminCheckoutController {
 	@GetMapping("/checkOut/{id}")
 	public ResponseEntity<?> getCheckoutById(@PathVariable Integer id){
 		return new ResponseEntity<> (checkoutService.getCheckoutById(id), HttpStatus.OK);
+	}
+	
+	
+	//
+	@GetMapping("/listUser")
+	public ResponseEntity<?> getAllUser(){
+		return new ResponseEntity<> (userService.getAllUser(), HttpStatus.OK);
 	}
 }

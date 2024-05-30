@@ -1,14 +1,13 @@
-
-import React from 'react';
-
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminOrder from './AdminOrder';
-
+import AdminUser from './AdminUser';
 
 function AdminHome() {
+    const [activeTab, setActiveTab] = useState('tab1');
 
     return (
-    <div className="container-fluid">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-md-2 bg-light sidebar">
                     <h4 className="my-4">Trang Admin</h4>
@@ -47,27 +46,50 @@ function AdminHome() {
                     <div className="tab-container mt-4">
                         <ul className="nav nav-tabs flex-column flex-sm-row">
                             <li className="nav-item">
-                                <a className="nav-link active" data-toggle="tab" href="#tab1">Quản Lý Đơn Hàng</a>
+                                <a 
+                                    className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`} 
+                                    onClick={() => setActiveTab('tab1')}
+                                    href="#tab1"
+                                >
+                                    Quản Lý Đơn Hàng
+                                </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#tab2">Quản Lý User</a>
+                                <a 
+                                    className={`nav-link ${activeTab === 'tab2' ? '' : ''}`} 
+                                    onClick={() => setActiveTab('tab2')}
+                                    href="#tab2"
+                                >
+                                    Quản Lý User
+                                </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" data-toggle="tab" href="#tab3">Quản Lý Sản Phẩm</a>
+                                <a 
+                                    className={`nav-link ${activeTab === 'tab3' ? '' : ''}`} 
+                                    onClick={() => setActiveTab('tab3')}
+                                    href="#tab3"
+                                >
+                                    Quản Lý Sản Phẩm
+                                </a>
                             </li>
                         </ul>
                         <div className="tab-content mt-3">
-                            <div id="tab1" className="container tab-pane active"><br />
-                                <AdminOrder/>
-                            </div>
-                            <div id="tab2" className="container tab-pane fade"><br />
-                                <h3>Tab 2</h3>
-                                <p>Content for Tab 2.</p>
-                            </div>
-                            <div id="tab3" className="container tab-pane fade"><br />
-                                <h3>Tab 3</h3>
-                                <p>Content for Tab 3.</p>
-                            </div>
+                            {activeTab === 'tab1' && (
+                                <div id="tab1" className="container tab-pane active"><br />
+                                    <AdminOrder />
+                                </div>
+                            )}
+                            {activeTab === 'tab2' && (
+                                <div id="tab2" className="container tab-pane fade"><br />
+                                    <AdminUser />
+                                </div>
+                            )}
+                            {activeTab === 'tab3' && (
+                                <div id="tab3" className="container tab-pane fade"><br />
+                                    <h3>Tab 3</h3>
+                                    <p>Content for Tab 3.</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
