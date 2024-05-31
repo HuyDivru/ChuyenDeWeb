@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -155,25 +156,33 @@ public class AddToCartController {
             if (ShoppingConfiguration.validationWithHashMap(keys, getCartRequest)) {
                 // validation logic here
             }
-            List<AddtoCart> obj = cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
-            return ResponseEntity.ok(obj);
+            List<AddtoCart> cartItems = cartService.getCartByUserId(Long.parseLong(getCartRequest.get("userId")));
+           
+            
+            List<Map<String, Object>> response = cartItems.stream().map(item -> {
+                Map<String, Object> cartItem = new HashMap<>();
+                cartItem.put("id", item.getId());
+                cartItem.put("qty", item.getQty());
+                cartItem.put("price", item.getPrice());
+                cartItem.put("user_id", item.getUser_id());
+                cartItem.put("added_date", item.getAdded_date());
+                
+                Map<String, Object> product = new HashMap<>();
+                product.put("id", item.getProduct().getId());
+                product.put("name", item.getProduct().getName());
+                product.put("price", item.getProduct().getPrice());
+                product.put("image_url", item.getProduct().getImage_url());
+                
+                cartItem.put("product", product);
+                
+                return cartItem;
+            }).collect(Collectors.toList());
+            
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage(), ""));
         }
     }
     
-    
-//    @PostMapping("getCartsByUserId")
-//    public ResponseEntity<List<CartItemProjection>> getCartsByUserId(@RequestBody HashMap<String, String> getCartRequest) {
-//        try {
-//            String keys[] = {"userId"};
-//            if (ShoppingConfiguration.validationWithHashMap(keys, getCartRequest)) {
-//                // validation logic here
-//            }
-//            List<CartItemProjection> obj = cartService.getCartItemsByUserIdProjection(Long.parseLong(getCartRequest.get("userId")));
-//            return ResponseEntity.ok(obj);
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//    }
+ 
 }

@@ -20,8 +20,8 @@ public interface AddToCartRepo  extends JpaRepository<AddtoCart, Long>{
 	@Query("Select sum(addCart.price) FROM AddtoCart addCart WHERE addCart.user_id=:user_id")
 	double getTotalAmountByUserId(@Param("user_id")Long user_id);
 	
-	@Query("Select addCart  FROM AddtoCart addCart WHERE addCart.user_id=:user_id")
-	List<AddtoCart> getCartByuserId(@Param("user_id")Long user_id);
+	@Query("SELECT addCart FROM AddtoCart addCart JOIN FETCH addCart.product WHERE addCart.user_id = :user_id")
+    List<AddtoCart> getCartByuserId(@Param("user_id") Long user_id);
 	
 	@Query("Select addCart  FROM AddtoCart addCart ")
 	Optional<AddtoCart> getCartByuserIdtest();

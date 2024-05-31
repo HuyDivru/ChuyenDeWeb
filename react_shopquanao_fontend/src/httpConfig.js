@@ -23,7 +23,7 @@ export function httpGet(url) {
 
 export function httpGetwithToken(url, param) {
     param['userId'] = localStorage.getItem("user_id");
-    return axios.get(BASE_URLr + url, param, {
+    return axios.get(BASE_URL + url, param, {
         headers: {
             'Content-Type': 'application/json',
             "Authorization": "Bearer " + localStorage.getItem("token")

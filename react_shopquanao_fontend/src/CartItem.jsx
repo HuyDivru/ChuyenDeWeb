@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import './CartItem.css'; 
+import './CartItem.css';
 import { useUser } from './UserContext';
 import { httpPostwithToken } from './httpConfig';
 
 function CartItem() {
+    const { user, token } = useUser();
+    const [cart, setCart] = useState([]);
 
-    const {user,token} = useUser();
-    const [cart,setCart]  = useState([]);
-
-    useEffect(() => {   
-        if(user && token){
+    useEffect(() => {
+        if (user && token) {
             fetchCartDetails();
         }
-    },[user,token]); 
-    
-    
+    }, [user, token]);
+
     const fetchCartDetails = async () => {
         try {
-            const response = await httpPostwithToken('addtocart/getCartsByUserId', { userId: user.id }, token);
+            const response = await httpPostwithToken('addtocart/getCartsByUserId', { userId: user.id });
             setCart(response.data);
         } catch (error) {
             console.error("There was an error fetching the cart details!", error);
@@ -25,114 +23,103 @@ function CartItem() {
     };
 
     return (
-        <div className="container mt-5 p-3 rounded cart">
-            <div className="row no-gutters">
-                <div className="col-md-8">
-                    <div className="product-details mr-2">
-                        <div className="d-flex flex-row align-items-center">
-                            <i className="fa fa-long-arrow-left"></i>
-                            <span className="ml-2">Tiếp Tục Mua Hàng</span>
-                        </div>
-                        <hr />
-                        <h6 className="mb-0">Shopping cart</h6>
-                        <div className="d-flex justify-content-between">
-                            <span>Bạn có {cart.length} sản phẩm trong giỏ hàng</span>
-                            <div className="d-flex flex-row align-items-center">
-                                <span className="text-black-50">Sort by:</span>
-                                <div className="price ml-2">
-                                    <span className="mr-1">price</span>
-                                    <i className="fa fa-angle-down"></i>
+        <section className="h-100 h-custom" style={{ backgroundColor: '#d2c9ff' }}>
+            <div className="container py-5 h-100">
+                <div className="row d-flex justify-content-center align-items-center h-100">
+                    <div className="col-12">
+                        <div className="card card-registration card-registration-2" style={{ borderRadius: '15px' }}>
+                            <div className="card-body p-0">
+                                <div className="row g-0">
+                                    <div className="col-lg-8">
+                                        <div className="p-5">
+                                            <div className="d-flex justify-content-between align-items-center mb-5">
+                                                <h1 className="fw-bold mb-0 text-black">Giỏ Hàng</h1>
+                                                <h6 className="mb-0 text-muted">{cart.length} sản phẩm</h6>
+                                            </div>
+                                            <hr className="my-4" />
+                                            {cart.map((item, index) => (
+                                                <div key={index} className="row mb-4 d-flex justify-content-between align-items-center">
+                                                    <div className="col-md-2 col-lg-2 col-xl-2">
+                                                        <img
+                                                            src={item.product.image_url}
+                                                            className="img-fluid rounded-3" alt="Cotton T-shirt" />
+                                                    </div>
+                                                    <div className="col-md-3 col-lg-3 col-xl-3">
+                                                        <h6 className="text-muted"></h6>
+                                                        <h6 className="text-black mb-0">{item.product.name}</h6>
+                                                    </div>
+                                                    <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                        <h6 className="text-black mb-0">{item.qty}</h6>
+                                                    </div>
+                                                    <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                        <h6 className="mb-0">$ {item.product.price}</h6>
+                                                    </div>
+                                                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                        <a href="#!" className="text-muted"><i className="fas fa-times"></i></a>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            <hr className="my-4" />
+
+
+
+                                            <div className="pt-5">
+                                                <h6 className="mb-0">
+                                                    <a href="#!" className="text-body"><i
+                                                        className="fas fa-long-arrow-alt-left me-2"></i>Tiếp Tục Mua Hàng</a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-4 bg-grey">
+                                        <div className="p-5">
+                                            <h3 className="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                            <hr className="my-4" />
+
+                                            <div className="d-flex justify-content-between mb-4">
+                                                <h5 className="text-uppercase">items 3</h5>
+                                                <h5>€ 132.00</h5>
+                                            </div>
+
+                                            <h5 className="text-uppercase mb-3">Shipping</h5>
+
+                                            <div className="mb-4 pb-2">
+                                                <select data-mdb-select-init>
+                                                    <option value="1">Standard-Delivery- €5.00</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                    <option value="4">Four</option>
+                                                </select>
+                                            </div>
+
+                                            <h5 className="text-uppercase mb-3">Give code</h5>
+
+                                            <div className="mb-5">
+                                                <div data-mdb-input-init className="form-outline">
+                                                    <input type="text" id="form3Examplea2" className="form-control form-control-lg" />
+                                                    <label className="form-label" htmlFor="form3Examplea2">Enter your code</label>
+                                                </div>
+                                            </div>
+
+                                            <hr className="my-4" />
+
+                                            <div className="d-flex justify-content-between mb-5">
+                                                <h5 className="text-uppercase">Total price</h5>
+                                                <h5>€ 137.00</h5>
+                                            </div>
+
+                                            <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark">Register</button>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        {cart.map((item,index) =>( 
-                        <div key={index} className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                            <div className="d-flex flex-row">
-                                <img className="rounded" src="{item.product.image_url}" width="40" alt="Product" />
-                                <div className="ml-2">
-                                    <span className="font-weight-bold d-block">{item.product.name}</span>
-                                    <span className="spec">Giá: ${item.product.price}</span>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row align-items-center">
-                                <span className="d-block">{item.qty}</span>
-                                <span className="d-block ml-5 font-weight-bold">${item.product.price * item.qty}</span>
-                                <i className="fa fa-trash-o ml-3 text-black-50"></i>
-                            </div>
-                        </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="col-md-4">
-                    <div className="payment-info">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <span>Card details</span>
-                            <img className="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30" alt="Card" />
-                        </div>
-                        <span className="type d-block mt-3 mb-1">Card type</span>
-                        <label className="radio">
-                            <input type="radio" name="card" value="payment" defaultChecked />
-                            <span>
-                                <img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard" />
-                            </span>
-                        </label>
-                        <label className="radio">
-                            <input type="radio" name="card" value="payment" />
-                            <span>
-                                <img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" alt="Visa" />
-                            </span>
-                        </label>
-                        <label className="radio">
-                            <input type="radio" name="card" value="payment" />
-                            <span>
-                                <img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" alt="Amex" />
-                            </span>
-                        </label>
-                        <label className="radio">
-                            <input type="radio" name="card" value="payment" />
-                            <span>
-                                <img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" alt="Paypal" />
-                            </span>
-                        </label>
-                        <div>
-                            <label className="credit-card-label">Name on card</label>
-                            <input type="text" className="form-control credit-inputs" placeholder="Name" />
-                        </div>
-                        <div>
-                            <label className="credit-card-label">Card number</label>
-                            <input type="text" className="form-control credit-inputs" placeholder="0000 0000 0000 0000" />
-                        </div>
-                        <div className="row">
-                            <div className="col-md-6">
-                                <label className="credit-card-label">Date</label>
-                                <input type="text" className="form-control credit-inputs" placeholder="12/24" />
-                            </div>
-                            <div className="col-md-6">
-                                <label className="credit-card-label">CVV</label>
-                                <input type="text" className="form-control credit-inputs" placeholder="342" />
-                            </div>
-                        </div>
-                        <hr className="line" />
-                        <div className="d-flex justify-content-between information">
-                            <span>Subtotal</span>
-                            <span>$3000.00</span>
-                        </div>
-                        <div className="d-flex justify-content-between information">
-                            <span>Shipping</span>
-                            <span>$20.00</span>
-                        </div>
-                        <div className="d-flex justify-content-between information">
-                            <span>Total(Incl. taxes)</span>
-                            <span>$3020.00</span>
-                        </div>
-                        <button className="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button">
-                            <span>$3020.00</span>
-                            <span>Checkout<i className="fa fa-long-arrow-right ml-1"></i></span>
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

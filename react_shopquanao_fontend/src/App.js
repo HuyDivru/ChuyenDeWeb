@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import CartItem from './CartItem';
 import AdminHome from './AdminHome';
+import ItemCart from './ItemCart';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/cartItem" element={<CartItem/>} />
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/admin" element={<AdminHome/>} />
+          <Route path="/test" element={<ItemCart/>} />
         </Routes>
       </Router>
     </div>
