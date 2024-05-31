@@ -1,7 +1,10 @@
 package com.shopbanquanao.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -65,11 +68,14 @@ public class AddToCartController {
             int qty = Integer.parseInt(addCartRequest.get("qty"));
             double price = Double.parseDouble(addCartRequest.get("price"));
 
+            
+            String addedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             List<AddtoCart> cartItems = cartService.getCartByUserId(userId);
             boolean itemExists = false;
             for (AddtoCart item : cartItems) {
                 if (item.getProduct().getId() == productId) {
-                    cartService.updateQtyByCartId(item.getId(), item.getQty() + qty, price);
+                    cartService.updateQtyByCartId(item.getId(), item.getQty() + qty, price,addedDate);
+                    cartService.updateCartItemQuantity(item.getId(),item.getQty()+qty);
                     itemExists = true;
                     break;
                 }
@@ -81,6 +87,14 @@ public class AddToCartController {
 
             List<AddtoCart> updatedCartItems = cartService.getCartByUserId(userId);
             return ResponseEntity.ok(updatedCartItems);
+            
+//            double totalPrice = cartService.calculateTotalPrice(userId);
+
+            // Trả về thông tin giỏ hàng cùng với tổng giá trị
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("cartItems", cartService.getCartByUserId(userId));
+//            response.put("totalPrice", totalPrice);
+//            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,13 +132,13 @@ public class AddToCartController {
                 // validation logic here
             	return ResponseEntity.badRequest().body(new ApiResponse("Validation failed for required fields", ""));
             }
-
+            String addedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             long cartId = Long.parseLong(addCartRequest.get("cartId"));
             long userId = Long.parseLong(addCartRequest.get("userId"));
             int qty = Integer.parseInt(addCartRequest.get("qty"));
             double price = Double.parseDouble(addCartRequest.get("price"));
 
-            cartService.updateQtyByCartId(cartId, qty, price);
+            cartService.updateQtyByCartId(cartId, qty, price,addedDate);
             List<AddtoCart> obj = cartService.getCartByUserId(userId);
             return ResponseEntity.ok(obj);
 

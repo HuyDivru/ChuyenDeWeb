@@ -48,15 +48,15 @@ function CartItem() {
                         {cart.map((item,index) =>( 
                         <div key={index} className="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                             <div className="d-flex flex-row">
-                                <img className="rounded" src="{item.product?.image_url}" width="40" alt="Product" />
+                                <img className="rounded" src="{item.product.image_url}" width="40" alt="Product" />
                                 <div className="ml-2">
-                                    <span className="font-weight-bold d-block">{item.product?.name}</span>
-                                    <span className="spec">Giá: ${item.product?.price}</span>
+                                    <span className="font-weight-bold d-block">{item.product.name}</span>
+                                    <span className="spec">Giá: ${item.product.price}</span>
                                 </div>
                             </div>
                             <div className="d-flex flex-row align-items-center">
                                 <span className="d-block">{item.qty}</span>
-                                <span className="d-block ml-5 font-weight-bold">${item.product?.price * item.qty}</span>
+                                <span className="d-block ml-5 font-weight-bold">${item.product.price * item.qty}</span>
                                 <i className="fa fa-trash-o ml-3 text-black-50"></i>
                             </div>
                         </div>

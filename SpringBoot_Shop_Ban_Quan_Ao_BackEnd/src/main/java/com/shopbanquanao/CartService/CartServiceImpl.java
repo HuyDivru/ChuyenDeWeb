@@ -60,8 +60,8 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void updateQtyByCartId(long cartId, int qty, double price) throws Exception {
-		addCartRepo.updateQtyByCartId(cartId,price,qty);
+	public void updateQtyByCartId(long cartId, int qty, double price,String added_date) throws Exception {
+		addCartRepo.updateQtyByCartId(cartId,price,qty,added_date);
 	}
 
 	@Override
@@ -107,6 +107,23 @@ public class CartServiceImpl implements CartService{
     public List<AddtoCart> getCartWithProductInfoByUserId(Long userId) {
         return addCartRepo.getCartWithProductInfoByUserId(userId);
     }
+
+	@Override
+	public void updateCartItemQuantity(long cartId, int newQuantity) {
+		AddtoCart cartItem=addCartRepo.findById(cartId).orElse(null);
+		if(cartItem==null) {
+			return ;
+		}
+		
+		Products product=cartItem.getProduct();
+		double productPrice=product.getPrice();
+		
+		double newPrice=productPrice*newQuantity;
+		
+//		cartItem.setQty(newQuantity);
+		cartItem.setPrice(newPrice);
+		addCartRepo.save(cartItem);
+	}
 
 //	@Override
 //	public List<CartItemProjection> getCartItemsByUserIdProjection(long userId) {

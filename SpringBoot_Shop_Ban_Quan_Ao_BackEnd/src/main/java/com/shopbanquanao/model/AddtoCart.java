@@ -1,5 +1,8 @@
 package com.shopbanquanao.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -8,6 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -90,5 +94,11 @@ public class AddtoCart {
 		this.productName = productName;
 	}
 	
+	@PrePersist
+	 protected void onCreate() {
+		 if (this.added_date == null || this.added_date.isEmpty()) {
+	            this.added_date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+	     }
+	 }
 	
 }

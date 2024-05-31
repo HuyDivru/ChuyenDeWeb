@@ -41,7 +41,10 @@ function ProductDetail() {
             return newQuantity > 0 ? newQuantity : 1;
         });
     };
-
+    const getCurrentDateTime =  () => {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+    };
     const handleAddToCart = async () => {
         if (!user) {
             alert("Lỗi Kết Nối Api! Vui lòng đăng nhập!");
@@ -58,6 +61,7 @@ function ProductDetail() {
                 userId: user.id, // Ensure userId is correctly set here
                 qty: quantity,
                 price: totalPrice,
+                added_date:getCurrentDateTime(),
             };
 
             const response = await httpPostwithToken('addtocart/addOrUpdateProduct', updateCartRequest, token);
