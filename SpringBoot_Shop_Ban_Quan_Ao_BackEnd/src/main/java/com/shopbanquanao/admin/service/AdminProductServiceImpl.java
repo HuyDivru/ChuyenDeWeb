@@ -41,14 +41,12 @@ public class AdminProductServiceImpl implements AdminProductService{
 
 	@Override
 	public Products editProduct(Products product, Integer id) {
-		Products oldProduct=productRepo.findById(id).get();
-		
+		Products oldProduct = productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
 		oldProduct.setName(product.getName());
 		oldProduct.setPrice(product.getPrice());
 		oldProduct.setImage_url(product.getImage_url());
 		oldProduct.setAdded_on(product.getAdded_on());
 		oldProduct.setCategory_id(product.getCategory_id());
-		
 		
 		return productRepo.save(oldProduct);
 	}

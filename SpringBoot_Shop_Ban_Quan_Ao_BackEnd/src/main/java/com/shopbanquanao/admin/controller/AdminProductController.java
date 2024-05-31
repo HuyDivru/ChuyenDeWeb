@@ -45,6 +45,9 @@ public class AdminProductController {
 
 	@PutMapping("/editProduct/{id}")
 	public ResponseEntity<?> editProduct(@RequestBody Products product, @PathVariable Integer id) {
+		if(product.getImage_url()==null || product.getImage_url().isEmpty()) {
+			return new ResponseEntity<>("Image URL cannot be empty", HttpStatus.BAD_REQUEST);
+		}
 		return new ResponseEntity<>(productService.editProduct(product, id), HttpStatus.CREATED);
 	}
 	

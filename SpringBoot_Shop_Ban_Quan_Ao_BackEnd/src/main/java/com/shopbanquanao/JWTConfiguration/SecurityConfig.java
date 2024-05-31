@@ -86,6 +86,8 @@ public class SecurityConfig {
 	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.POST, "/listProduct"))
 	                        .permitAll()
+	                        .requestMatchers(antMatcher(HttpMethod.PUT, "/editProduct/**"))
+	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/deleteProduct/**"))
 	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.POST, "/saveProduct")).permitAll()

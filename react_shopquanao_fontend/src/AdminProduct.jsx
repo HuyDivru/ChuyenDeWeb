@@ -15,11 +15,11 @@ function AdminProduct() {
     };
 
     const [editProduct,setEditProduct] =useState({
-        id:'',
+        id: '',
         name: '',
         price: '',
         image_url: '',
-        added_on:getCurrentDateTime(),
+        added_on: '',
         category_id: '',
     });
 
@@ -34,7 +34,7 @@ function AdminProduct() {
             setProducts(response.data);
         }
         catch (error) {
-            console.error("There was an error fetching the list user!", error);
+            console.error("Lỗi không thể hiển thị danh sách sản phẩm", error);
         }
 
     }
@@ -56,29 +56,39 @@ function AdminProduct() {
     }
     //xư lý sự kiện khi nhấn nút edit
     const handleEditClick = (product) =>{
-        setEditProduct(product);
+        console.log("product.image_url:", product.image_url);
+        setEditProduct({
+            id:product.id,
+            name: product.name ||'',
+            price: product.price ||'',
+            image_url:product.image_url || '',
+            added_on:getCurrentDateTime(),
+            category_id:product.category_id || '',
+        });
         const modalElement = document.getElementById('editProductModal');
         const modal = new Modal(modalElement);
         modal.show();
     }
 
-    const handleChange = (e) =>{
-        const {id,value} = e.target;
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        console.log(`Changed ${id} to:`, value);
         setEditProduct((prevProduct) => ({
             ...prevProduct,
-            [id]:value
+            [id]: value.toString()
         }));
-    } 
+    }
 
     const handleSaveChange = async () =>{
-        try{
-            
-            if (!editProduct.image_url) {
-                alert('Please provide the image URL.');
-                return;
-            }
+        if (!editProduct.image_url) {
+            alert('Vui lòng cung cấp đường dẫn ảnh.');
+            return;
+        }
 
-            await httpPut(`editProduct/${editProduct.id}`, editProduct);
+        console.log('editProduct before saving:', editProduct);
+
+        try{           
+            await httpPut(`editProduct/${parseInt(editProduct.id)}`, editProduct);
             fetchListProduct();
             alert('Sản phẩm đã được cập nhật thành công');
             const modalElement = document.getElementById('editProductModal');
@@ -110,7 +120,6 @@ function AdminProduct() {
                         <td>{product.name}</td>
                         <td>{product.price}</td>
                         <td><img src={product.image_url} alt="Product" style={{ width: "60px", height: "60px" }} /> 
-                            <p style={{display: "none"}}>{product.image_url}</p>
                         </td>
                         <td>{product.added_on}</td>
                         <td>{product.category_id}</td>
@@ -134,7 +143,7 @@ function AdminProduct() {
             </tbody>
         </table>
 
-
+                    
         <div className="modal fade" id="editProductModal" tabIndex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -162,6 +171,7 @@ function AdminProduct() {
                                     placeholder="Giá sản phẩm"
                                     value={editProduct.price}
                                     onChange={handleChange}
+                                    
                                 />
                                 <label htmlFor="price">Giá sản phẩm</label>
                             </div>
@@ -173,6 +183,7 @@ function AdminProduct() {
                                     placeholder="Đường dẫn ảnh"
                                     value={editProduct.image_url}
                                     onChange={handleChange}
+                                    
                                 />
                                 <label htmlFor="image_url">Nhập ảnh</label>
                             </div>
@@ -184,6 +195,7 @@ function AdminProduct() {
                                     placeholder="Mã loại sản phẩm"
                                     value={editProduct.category_id}
                                     onChange={handleChange}
+                          
                                 />
                                 <label htmlFor="category_id">Nhập mã loại sản phẩm</label>
                             </div>
