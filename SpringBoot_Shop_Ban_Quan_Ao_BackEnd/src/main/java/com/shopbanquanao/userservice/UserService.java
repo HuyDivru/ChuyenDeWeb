@@ -2,6 +2,7 @@ package com.shopbanquanao.userservice;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -14,4 +15,7 @@ public interface UserService {
 	User findByMobile(String mobile) throws Exception;
 	User getUserDetailById(long userId) throws Exception;
 	List<User> getAllUser() ;
+	
+
+	
 }

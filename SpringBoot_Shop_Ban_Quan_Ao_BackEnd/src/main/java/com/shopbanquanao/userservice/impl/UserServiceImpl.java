@@ -2,6 +2,7 @@ package com.shopbanquanao.userservice.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,8 @@ public class UserServiceImpl implements UserService{
 	public List<User> getAllUser(){
 		return userRepo.findAll();
 	}
+
+
+	
 
 }

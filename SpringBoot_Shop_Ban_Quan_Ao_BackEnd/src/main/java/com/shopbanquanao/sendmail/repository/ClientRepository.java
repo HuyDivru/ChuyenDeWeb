@@ -1,4 +1,4 @@
-package com.shopbanquanao.repository;
+package com.shopbanquanao.sendmail.repository;
 
 import java.util.Optional;
 
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.shopbanquanao.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-	
-	Optional<User> findByMobile(String mobile);
-	
+public interface ClientRepository extends JpaRepository<User, Long>{
+	Optional<User> findByEmail(String email);
 }

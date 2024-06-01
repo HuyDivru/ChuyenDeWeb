@@ -97,7 +97,7 @@ public class SecurityConfig {
 	                        .requestMatchers(antMatcher("/api/order/**")).permitAll()
 	                        .requestMatchers(antMatcher("/api/addtocart/**")).permitAll()
 	                        .requestMatchers(antMatcher("/api/addtocart/user/**")).permitAll()
-	                        
+	                        .requestMatchers(antMatcher("/api/forgot-password/**")).permitAll()
 	                      .anyRequest()
 	                        .authenticated());
 	        
