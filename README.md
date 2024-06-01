@@ -37,5 +37,8 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <h4>Trang Admin</h4>
 <h4>Chính Sách Khách Hàng</h4>
 <h2>VIDEO DEMO</h2>
-[![Video demo](https://github.com/TravisHuy/ChuyenDeWeb/assets/117434972/5d63d39c-f048-49b0-b7f5-a4e523759779)]
+<video >
+        <source src="https://github.com/TravisHuy/ChuyenDeWeb/assets/117434972/5d63d39c-f048-49b0-b7f5-a4e523759779" type="videodemo">
+        Video demo
+</video>
 https://github.com/TravisHuy/ChuyenDeWeb/assets/117434972/5d63d39c-f048-49b0-b7f5-a4e523759779
