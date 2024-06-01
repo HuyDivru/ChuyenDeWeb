@@ -27,7 +27,7 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <p>React Components: Các thành phần như ProductList, ProductFilter, và Pagination được xây dựng để hiển thị danh sách sản phẩm và các tùy chọn lọc.</p>
 <p>Bootstrap: Sử dụng các thành phần Bootstrap để tạo giao diện nhất quán và hấp dẫn.</p>
 <p>Axios: Sử dụng Axios để gọi các API RESTful từ backend, lấy danh sách sản phẩm và các thông tin cần thiết.</p>
-<p>Axios: Sử dụng Axios để gọi các API RESTful từ backend, lấy danh sách sản phẩm và các thông tin cần thiết.</p>
+<p>React router: React Router là một thư viện JavaScript cho phép bạn tạo các ứng dụng React có khả năng điều hướng giữa các trang web. Nó cung cấp một cách để quản lý các URL, hiển thị các thành phần React khác nhau dựa trên URL hiện tại và xử lý các sự kiện điều hướng.</p>
 <br>
 <h2>Các Thành Phần Chính của Trang Web</h2>
 <h4>Trang Chủ</h4>
@@ -37,4 +37,5 @@ năng gửi email, và việc sử dụng React cho giao diện người dùng.
 <h4>Trang Admin</h4>
 <h4>Chính Sách Khách Hàng</h4>
 <h2>VIDEO DEMO</h2>
+[![Video demo](https://github.com/TravisHuy/ChuyenDeWeb/assets/117434972/5d63d39c-f048-49b0-b7f5-a4e523759779)]
 https://github.com/TravisHuy/ChuyenDeWeb/assets/117434972/5d63d39c-f048-49b0-b7f5-a4e523759779
