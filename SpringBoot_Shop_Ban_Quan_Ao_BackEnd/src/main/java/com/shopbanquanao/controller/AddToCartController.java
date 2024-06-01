@@ -109,6 +109,7 @@ public class AddToCartController {
         return ResponseEntity.ok(cartItems);
     }
     
+ 
     @DeleteMapping("removeProductFromCart")
     public ResponseEntity<?> removeCartWithProductId(@RequestBody HashMap<String, String> removeCartRequest) {
         try {
@@ -116,8 +117,19 @@ public class AddToCartController {
             if (ShoppingConfiguration.validationWithHashMap(key, removeCartRequest)) {
                 // validation logic here
             }
-            List<AddtoCart> obj = cartService.removeCartByUserId(Long.parseLong(removeCartRequest.get("userId")),
-                    Long.parseLong(removeCartRequest.get("cartId")));
+            //debug
+            Long userId = Long.parseLong(removeCartRequest.get("userId"));
+            Long cartId = Long.parseLong(removeCartRequest.get("cartId"));
+            System.out.println("User ID: " + userId + ", Cart ID: " + cartId);
+
+            List<AddtoCart> cartBeforeDeletion = cartService.getCartByUserId(userId);
+            System.out.println("Cart before deletion: " + cartBeforeDeletion);
+
+            List<AddtoCart> obj = cartService.removeCartByUserId(cartId, userId);
+
+            List<AddtoCart> cartAfterDeletion = cartService.getCartByUserId(userId);
+            System.out.println("Cart after deletion: " + cartAfterDeletion);
+            
             return ResponseEntity.ok(obj);
         } catch (Exception e) {
             e.printStackTrace();

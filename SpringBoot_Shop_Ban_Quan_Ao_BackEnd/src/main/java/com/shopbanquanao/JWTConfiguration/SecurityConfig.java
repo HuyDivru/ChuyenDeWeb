@@ -90,6 +90,8 @@ public class SecurityConfig {
 	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/deleteProduct/**"))
 	                        .permitAll()
+	                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/api/addtocart/removeProductFromCart/**"))
+	                        .permitAll()
 	                        .requestMatchers(antMatcher(HttpMethod.POST, "/saveProduct")).permitAll()
 	                        .requestMatchers(antMatcher("/api/product/**")).permitAll()
 	                        .requestMatchers(antMatcher("/api/order/**")).permitAll()

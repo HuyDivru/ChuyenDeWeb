@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CartItem.css';
 import { useUser } from './UserContext';
-import { httpPostwithToken } from './httpConfig';
+import { httpDeleteWithToken, httpPostwithToken } from './httpConfig';
 
 function CartItem() {
     const { user, token } = useUser();
@@ -9,6 +9,7 @@ function CartItem() {
 
     const [paymentType, setPaymentType] = useState('COD');
     const [deliveryAddress, setDeliveryAddress] = useState('');
+    const [addressError, setAddressError] = useState(false);
 
     useEffect(() => {
         if (user && token) {
@@ -16,6 +17,7 @@ function CartItem() {
         }
     }, [user, token]);
 
+    
     
     const total = cart.reduce((acc,item)=>acc+item.product.price*item.qty,0);
 
@@ -28,10 +30,24 @@ function CartItem() {
         }
     };
 
-    //đang làm
-    const fetchCartDelete= async (cartId) => {
-
+    //xóa sản phảm trong giỏ hàng
+    const fetchCartDelete = async (cartId) => {
+        try {
+            const response = await httpDeleteWithToken('addtocart/removeProductFromCart', { cartId, userId: user.id }); 
+            if (response.status === 200) {
+                setCart(response.data); // Cập nhật cart sau khi xóa
+                alert("Xóa sản phẩm thành công !");
+            } else if (response.status === 404) {
+                alert("Sản phẩm không tồn tại trong giỏ hàng!");
+            } else {
+                alert("Xóa sản phẩm thất bại !");
+            }
+        } catch (error) {
+            console.error("Lỗi xóa sản phẩm thất bại! ", error);
+            alert("Xóa sản phẩm khỏi giỏ hàng thất bại!");
+        }
     };
+    
 
     const handleCheckout = async () => {
         try {
@@ -49,6 +65,15 @@ function CartItem() {
         }
     }
 
+    // sử lý khi không nhập address
+    const handleBlur = () => {
+        if(!deliveryAddress){
+            setAddressError(true);
+        }
+        else{
+            setAddressError(false);
+        }
+    };
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: '#d2c9ff' }}>
             <div className="container py-5 h-100">
@@ -82,7 +107,7 @@ function CartItem() {
                                                         <h6 className="mb-0">$ {item.product.price}</h6>
                                                     </div>
                                                     <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                        <a href="#!" className="text-muted"><i className="fas fa-times"></i></a>
+                                                        <a href="#!" className="text-muted" onClick={() => fetchCartDelete(item.id)}><i className="fas fa-times"></i></a>
                                                     </div>
                                                 </div>
                                                 
@@ -128,8 +153,10 @@ function CartItem() {
                                                         className="form-control form-control-lg"
                                                         value={deliveryAddress}
                                                         onChange={(e) => setDeliveryAddress(e.target.value)}
-                                                    />
+                                                        onBlur={handleBlur}
+                                                   />
                                                     <label className="form-label" htmlFor="form3Examplea2">Nhập địa chỉ nhận hàng</label>
+                                                    {addressError && <p className="text-danger">Vui lòng nhập địa chỉ nhận hàng</p>}
                                                 </div>
                                             </div>
 

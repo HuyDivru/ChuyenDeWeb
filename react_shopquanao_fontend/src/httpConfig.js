@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { data } from 'jquery';
 
 const BASE_URL = "http://localhost:8080/api/";
 const BASE_URLr = "http://localhost:8080/";
@@ -56,12 +57,17 @@ export function httpDelete(url, param) {
 }
 
 
-export function httpDeleteWithToken(url, param, token) {
-    return axios.delete(BASE_URL + url, param, {
+export function httpDeleteWithToken(url, param) {
+    param['userId'] = localStorage.getItem("user_id");
+    const config = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    });
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        data: param
+    };
+
+    return axios.delete(BASE_URL + url, config);
 }
+
 
