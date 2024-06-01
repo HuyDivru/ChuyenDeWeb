@@ -6,7 +6,7 @@ import AdminProduct from './AdminProduct';
 import AddProduct from './AddProduct';
 
 function AdminHome() {
-    const [activeTab, setActiveTab] = useState('tab1');
+    const [activeTab, setActiveTab] = useState('order');
 
     return (
         <div className="container-fluid">

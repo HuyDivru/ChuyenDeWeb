@@ -39,7 +39,7 @@ function Login() {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user_id');
                     window.location.reload();
-                }, 15 * 60 * 1000);
+                }, 5 * 60 * 1000);
             };
 
             window.addEventListener('mousemove', resetTimeout);
@@ -64,7 +64,7 @@ function Login() {
     const handleRememberMeChange = (e) => {
         setRememberMe(e.target.checked);
     };
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

@@ -118,7 +118,7 @@ function CartItem() {
                                             
                                             <div className="pt-5">
                                                 <h6 className="mb-0">
-                                                    <a href="#!" className="text-body"><i
+                                                    <a href="/" className="text-body"><i
                                                         className="fas fa-long-arrow-alt-left me-2"></i>Tiếp Tục Mua Hàng</a>
                                                 </h6>
                                             </div>
