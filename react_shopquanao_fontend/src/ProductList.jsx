@@ -38,7 +38,7 @@ function ProductList() {
                             <Link to={`/product/${product.id}`}>{product.name}</Link>
                         </div>
                         <div className="box-pro-detail">
-                            <p className="pro-price">{product.price}đ</p>
+                            <p className="pro-price">{product.price}$</p>
                         </div>
                     </div>
                 ))}

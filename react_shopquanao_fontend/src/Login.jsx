@@ -10,10 +10,22 @@ import './Login.css';
 function Login() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ mobile: '', password: '' });
+
+    const [rememberMe, setRememberMe] = useState(false);// thêm trạng thái rememberMe
     const [errors, setErrors] = useState('');
     const { login } = useUser();
     
     useEffect(() => {
+
+         // Kiểm tra xem thông tin đăng nhập đã được lưu trong localStorage chưa
+         const storedMobile = localStorage.getItem('mobile');
+         const storedPassword = localStorage.getItem('password');
+         if (storedMobile && storedPassword) {
+             setFormData({ mobile: storedMobile, password: storedPassword });
+             setRememberMe(true); // Đánh dấu "Remember me"
+         }
+
+        // Xử lý timeout khi không hoạt động
         const setInactivityTimeout = () => {
             let inactivityTimer = setTimeout(() => {
                 localStorage.removeItem('token');
@@ -49,6 +61,10 @@ function Login() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const handleRememberMeChange = (e) => {
+        setRememberMe(e.target.checked);
+    };
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -67,7 +83,14 @@ function Login() {
                 });
                 window.navigator.credentials.store(cred);
             }
-
+            if (rememberMe) {
+                localStorage.setItem('mobile', formData.mobile);
+                localStorage.setItem('password', formData.password);
+            } else {
+                // Xóa thông tin đăng nhập nếu "Remember me" không được chọn
+                localStorage.removeItem('mobile');
+                localStorage.removeItem('password');
+            }
             navigate('/');
         } catch (error) {
             setErrors(error.response?.data?.message || 'Đăng Nhập Thất Bại');
@@ -106,6 +129,8 @@ function Login() {
                             type="checkbox" 
                             value="" 
                             id="form2Example31" 
+                            checked={rememberMe} // Đánh dấu "Remember me"
+                            onChange={handleRememberMeChange} // Xử lý thay đổi trạng thái "Remember me"
                         />
                         <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
                     </div>

@@ -92,7 +92,7 @@ function ProductDetail() {
                         <div className="product-detail-content">
                             <h1 className="product-title">{product.name}</h1>
                             <div className="product-price">
-                                <span className="price">{totalPrice}đ</span>
+                                <span className="price">{totalPrice}$</span>
                             </div>
                             <div className="product-description">
                                 <p>{product.description}</p>

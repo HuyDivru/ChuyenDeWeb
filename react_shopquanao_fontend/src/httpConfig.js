@@ -69,5 +69,3 @@ export function httpDeleteWithToken(url, param) {
 
     return axios.delete(BASE_URL + url, config);
 }
-
-

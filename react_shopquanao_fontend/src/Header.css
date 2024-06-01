@@ -38,3 +38,8 @@ header .nav-link {
     right: 0;
     left: auto;
 }
+
+.dropdown-toggle::after {
+    margin-left: 0.5rem;
+    border-color: white;
+}

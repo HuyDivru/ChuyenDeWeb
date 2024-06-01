@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from './UserContext';
-
-import './HomePage.css';
-import { httpPost_t, httpPostwithToken } from './httpConfig';
+import './Header.css';
+import { httpPostwithToken } from './httpConfig';
 
 function Header() {
     const navigate = useNavigate();
-    const { user, logout,token } = useUser();
+    const { user, logout, token } = useUser();
     const [cart, setCart] = useState([]);
-
 
     useEffect(() => {
         if (user && token) {
@@ -46,40 +44,31 @@ function Header() {
             return;
         }
         navigate("/cartItem");
-    }
-
-    const handleAdmin = () => {
-        navigate('/admin'); // Redirect to home page after logout
     };
 
-    const handleHome = () => {
-        navigate('/'); // Redirect to home page after logout
-    };
-
-    const handleTest = () => {
-        navigate('/test');
-    }
-    const cartItemCount = cart.reduce((total, item) => total + item.qty, 0);
+    const cartItemCount = useMemo(() => {
+        return cart.reduce((total, item) => total + item.qty, 0);
+    }, [cart]);
 
     return (
         <header className="p-3 bg-primary text-white">
             <div className="container">
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img src="/logo192.png" alt="logo" width="40" height="32" />
-                    <span className="ms-2">TravisHuy</span>
-                </a>
+                    <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <img src="/logo192.png" alt="logo" width="40" height="32" />
+                        <span className="ms-2">TravisHuy</span>
+                    </a>
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/" className="nav-link px-2 text-white">Trang Chủ</a></li>
                         <li><a href="#" className="nav-link px-2 text-white">Quần</a></li>
-                        <li><a href="/test"  className="nav-link px-2 text-white">Áo</a></li>
-                        <li><a href="/admin"  className="nav-link px-2 text-white">Truy Cập Admin</a></li>
+                        <li><a href="#" className="nav-link px-2 text-white">Áo</a></li>
+                        <li><a href="/admin" className="nav-link px-2 text-white">Truy Cập Admin</a></li>
                         <li>
                             <div className="header-icon-cart position-relative">
                                 <div className="header-icon-cart__header cursor-pointer">
                                     <i className="fas fa-shopping-cart" onClick={handleCartItem}></i>
-                                    <span className="count-holder">
+                                    <span className="count-holder" onClick={handleCartItem}>
                                         <span className="count">{cartItemCount}</span>
                                     </span>
                                 </div>
@@ -97,6 +86,7 @@ function Header() {
                                 <button className="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className="fas fa-user"></i> {user.name}
                                 </button>
+                                <button onClick={handleLogoutClick}>Logout</button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><button className="dropdown-item" onClick={handleLogoutClick}>Logout</button></li>
                                 </ul>

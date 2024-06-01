@@ -26,48 +26,6 @@
 }
 
 
-/* Header.css */
-header {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
-    padding: 15px 0;
-}
-
-header a {
-    color: white;
-    text-decoration: none;
-}
-
-header .nav-link {
-    color: white;
-    margin-right: 15px;
-}
-
-.header-icon-cart {
-    position: relative;
-}
-
-.header-icon-cart__header .fa-shopping-cart {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.count-holder {
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 5px;
-}
-
-.dropdown-menu {
-    right: 0;
-    left: auto;
-}
-
-
 /* Carousel.css */
 /* .item-owl {
     margin-bottom: 30px;
