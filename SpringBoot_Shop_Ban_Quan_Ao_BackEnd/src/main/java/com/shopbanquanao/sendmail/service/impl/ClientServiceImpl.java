@@ -33,6 +33,15 @@ public class ClientServiceImpl implements ClientService{
 			throw new Exception(e.getMessage());
 		}
 	}
+
+	@Override
+	public Optional<User> findByMobile(String mobile) throws Exception {
+		try {
+			return clientRepo.findByMobile(mobile);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 	
 	
 }

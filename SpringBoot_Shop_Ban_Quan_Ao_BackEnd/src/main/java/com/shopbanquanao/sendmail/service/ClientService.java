@@ -8,4 +8,6 @@ public interface ClientService {
 	
 	Optional<User> findByEmail(String email) throws Exception;
 	public void save(User user) throws Exception;
+	
+	Optional<User> findByMobile(String mobile) throws Exception;
 }

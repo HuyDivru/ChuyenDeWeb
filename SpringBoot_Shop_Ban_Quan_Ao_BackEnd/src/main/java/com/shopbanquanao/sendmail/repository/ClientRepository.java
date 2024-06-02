@@ -10,4 +10,5 @@ import com.shopbanquanao.model.User;
 @Repository
 public interface ClientRepository extends JpaRepository<User, Long>{
 	Optional<User> findByEmail(String email);
+	Optional<User> findByMobile(String mobile);
 }
