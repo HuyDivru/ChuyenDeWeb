@@ -4,6 +4,7 @@ import { Button, Card, Modal, FloatingLabel, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
+
 function ForgotPassword() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -47,6 +48,7 @@ function ForgotPassword() {
     };
 
     return (
+        <>
         <div className="d-flex justify-content-center align-items-center vh-100">
             <Card style={{ width: '25rem' }}>
                 <Card.Header as="h5">Quên Mật Khẩu</Card.Header>
@@ -121,6 +123,7 @@ function ForgotPassword() {
                 </Modal.Footer>
             </Modal>
         </div>
+        </>
     );
 }
 

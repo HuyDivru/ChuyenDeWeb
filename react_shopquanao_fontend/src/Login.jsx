@@ -10,51 +10,17 @@ import './Login.css';
 function Login() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ mobile: '', password: '' });
-
-    const [rememberMe, setRememberMe] = useState(false);// thêm trạng thái rememberMe
+    const [rememberMe, setRememberMe] = useState(false);
     const [errors, setErrors] = useState('');
-    const { login } = useUser();
+    const { login, logout } = useUser();
     
     useEffect(() => {
-
-         // Kiểm tra xem thông tin đăng nhập đã được lưu trong localStorage chưa
-         const storedMobile = localStorage.getItem('mobile');
-         const storedPassword = localStorage.getItem('password');
-         if (storedMobile && storedPassword) {
-             setFormData({ mobile: storedMobile, password: storedPassword });
-             setRememberMe(true); // Đánh dấu "Remember me"
-         }
-
-        // Xử lý timeout khi không hoạt động
-        const setInactivityTimeout = () => {
-            let inactivityTimer = setTimeout(() => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('user_id');
-                window.location.reload();
-            }, 15 * 60 * 1000); // 15 minutes
-
-            const resetTimeout = () => {
-                clearTimeout(inactivityTimer);
-                inactivityTimer = setTimeout(() => {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('user_id');
-                    window.location.reload();
-                }, 5 * 60 * 1000);
-            };
-
-            window.addEventListener('mousemove', resetTimeout);
-            window.addEventListener('keydown', resetTimeout);
-            window.addEventListener('scroll', resetTimeout);
-
-            return () => {
-                clearTimeout(inactivityTimer);
-                window.removeEventListener('mousemove', resetTimeout);
-                window.removeEventListener('keydown', resetTimeout);
-                window.removeEventListener('scroll', resetTimeout);
-            };
-        };
-
-        setInactivityTimeout();
+        const storedMobile = localStorage.getItem('mobile');
+        const storedPassword = localStorage.getItem('password');
+        if (storedMobile && storedPassword) {
+            setFormData({ mobile: storedMobile, password: storedPassword });
+            setRememberMe(true);
+        }
     }, []);
 
     const handleChange = (e) => {
@@ -74,7 +40,7 @@ function Login() {
             localStorage.setItem('token', token);
             localStorage.setItem('user_id', user_profile_details.user_id);
 
-            login(user_profile_details, token); // Save user info and token in UserContext
+            login(user_profile_details, token);
 
             if (window.PasswordCredential && response.data.success) {
                 const cred = new window.PasswordCredential({
@@ -87,7 +53,6 @@ function Login() {
                 localStorage.setItem('mobile', formData.mobile);
                 localStorage.setItem('password', formData.password);
             } else {
-                // Xóa thông tin đăng nhập nếu "Remember me" không được chọn
                 localStorage.removeItem('mobile');
                 localStorage.removeItem('password');
             }
@@ -129,8 +94,8 @@ function Login() {
                             type="checkbox" 
                             value="" 
                             id="form2Example31" 
-                            checked={rememberMe} // Đánh dấu "Remember me"
-                            onChange={handleRememberMeChange} // Xử lý thay đổi trạng thái "Remember me"
+                            checked={rememberMe} 
+                            onChange={handleRememberMeChange} 
                         />
                         <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
                     </div>

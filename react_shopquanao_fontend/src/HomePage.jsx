@@ -4,7 +4,7 @@ import Header from "./Header";
 import ProductList from "./ProductList";
 import 'bootstrap/dist/css/bootstrap.css';
 import './HomePage.css';
-import Carousel from "./Carousel";
+import CarouselHome from "./CarouselHome";
 
 function HomePage() {
     return (
@@ -13,7 +13,7 @@ function HomePage() {
                 <Header />
             </div>
             <div className="homepage-carousel">
-                <Carousel />
+                <CarouselHome />
             </div>
             <div className="homepage-products">
                 <ProductList />

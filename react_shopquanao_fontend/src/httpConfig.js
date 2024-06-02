@@ -24,6 +24,15 @@ export function httpPost_m(url, param, config = {}) {
     });
 }
 
+
+//lấy product theo loại
+export function httpGet_m(url, param, config = {}) {
+    return axios.get(BASE_URL + url, param, {
+        headers: { 'Content-Type': 'application/json' },
+        ...config
+    });
+}
+
 export function httpGet(url) {
     return axios.get(BASE_URLr + url, {
         headers: { 'Content-Type': 'application/json' }

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { httpGet } from "./httpConfig";
 
-
+import './Product.css';
+import Header from "./Header";
+import Footer from "./Footer";
 
 function Product(){
 
@@ -10,7 +12,7 @@ function Product(){
     const [products,setProducts] =useState([]);
 
     useEffect(() => {
-        const fetchProductsByCategory = async () => {
+        const fetchProductsByCategory = async (cat_id) => {
             try {
                 const response = await httpGet(`api/product/getProductsByCategory?cat_id=${cat_id}`);
                 setProducts(response.data);
@@ -19,10 +21,13 @@ function Product(){
             }
         };
 
-        fetchProductsByCategory();
+        fetchProductsByCategory(cat_id);
     }, [cat_id]);
 
     return (
+       <>
+        <Header/>
+
         <div className="col-md-12 col-sm-12 col-xs-12">
             <div className="wrap-collection-title row">
                 <h1>Quần Áo</h1>
@@ -49,6 +54,9 @@ function Product(){
                 </div>
             </div>
         </div>
+       
+        <Footer/>
+       </>
     );
 }
 

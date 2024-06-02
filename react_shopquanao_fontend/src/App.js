@@ -12,6 +12,7 @@ import CartItem from './CartItem';
 import AdminHome from './AdminHome';
 import { UserProvider } from './UserContext';
 import ForgotPassword from './ForgotPassword';
+import Product from './Product';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/cartItem" element={<CartItem />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/products/:cat_id" element={<Product />} />
           <Route path="/admin" element={<AdminHome />} />
         </Routes>
       </Router>
