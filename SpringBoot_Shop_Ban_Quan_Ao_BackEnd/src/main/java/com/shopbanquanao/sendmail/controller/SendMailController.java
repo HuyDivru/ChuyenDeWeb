@@ -75,9 +75,12 @@ public class SendMailController {
 				if(oldPassword.equalsIgnoreCase(user.getPassword())) {
 					user.setPassword(newPassword);
 					clientService.save(user);
+					return ResponseEntity.ok("Mật khẩu đã đổi thành công");
+				}
+				else {
+					return ResponseEntity.badRequest().body("Mật khẩu cũ không đúng không tồn tại!");
 				}
 				
-				return ResponseEntity.ok("Mật khẩu đã đổi thành công");
 			}
 			else {
 				return ResponseEntity.badRequest().body("Số điện thoại không tồn tại!");
