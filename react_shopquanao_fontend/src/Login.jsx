@@ -136,7 +136,7 @@ function Login() {
                     </div>
                 </div>
                 <div className="col">
-                    <a href="#!">Quên Mật Khẩu?</a>
+                    <a href="/forgotpassword">Quên Mật Khẩu?</a>
                 </div>
             </div>
             {errors && <div className="text-danger text-center mb-3">{errors}</div>}

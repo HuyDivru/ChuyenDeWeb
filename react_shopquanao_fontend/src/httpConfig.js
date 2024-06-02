@@ -16,6 +16,14 @@ export function httpPost(url, param) {
     });
 }
 
+//reset và forgot password
+export function httpPost_m(url, param, config = {}) {
+    return axios.post(BASE_URL + url, param, {
+        headers: { 'Content-Type': 'application/json' },
+        ...config
+    });
+}
+
 export function httpGet(url) {
     return axios.get(BASE_URLr + url, {
         headers: { 'Content-Type': 'application/json' }

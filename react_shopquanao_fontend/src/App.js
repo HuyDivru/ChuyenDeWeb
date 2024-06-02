@@ -11,6 +11,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import CartItem from './CartItem';
 import AdminHome from './AdminHome';
 import { UserProvider } from './UserContext';
+import ForgotPassword from './ForgotPassword';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/cartItem" element={<CartItem />} />
           <Route path="/product/:productId" element={<ProductDetail />} />
           <Route path="/admin" element={<AdminHome />} />
