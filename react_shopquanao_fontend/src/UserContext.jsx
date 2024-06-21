@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
 
     const logout = useCallback(() => {
+        alert('Bạn đã hết phiên hoạt động, vui lòng đăng nhập lại.');
         setUser(null);
         setToken(null);
         localStorage.removeItem('user');
@@ -29,6 +30,7 @@ export const UserProvider = ({ children }) => {
         }
 
         let inactivityTimer = setTimeout(() => {
+            alert('Bạn đã hết phiên hoạt động, vui lòng đăng nhập lại.');
             logout();
             window.location.reload();
         }, 5 * 60 * 1000);
@@ -36,6 +38,7 @@ export const UserProvider = ({ children }) => {
         const resetTimeout = () => {
             clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(() => {
+                alert('Bạn đã hết phiên hoạt động, vui lòng đăng nhập lại.');
                 logout();
                 window.location.reload();
             }, 5 * 60 * 1000);

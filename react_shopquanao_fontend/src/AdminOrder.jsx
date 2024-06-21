@@ -4,10 +4,14 @@ import { useUser } from "./UserContext";
 
 function AdminOrder() {
     const [orders, setOrders] = useState([]);
+    const [users, setUsers]= useState([]);
+    const [products, setProducts] =useState([]);
     const { user } = useUser();
 
     useEffect(() => {
         fetchCheckoutOrder();
+        fetchUsers();
+        fetchProducts();
     }, []);
 
     const fetchCheckoutOrder = async () => {
@@ -23,13 +27,43 @@ function AdminOrder() {
         }
     };
 
+
+    const fetchProducts = async () => {
+        try{
+            const response= await httpGet('listProduct');
+            setProducts(response.data);
+        }
+        catch(error){
+            console.error("there was an error fetching the products!", error);
+        }
+    };
+
+    const fetchUsers = async () => {
+        try{
+            const response= await httpGet('listUser');
+            setUsers(response.data);
+        }
+        catch(error){
+            console.error("there was an error fetching the users!", error);
+        }
+    };
+
+    const getUserName =(userId) => {
+        const user= users.find(user => user.id === userId);
+        return user ? user.name :"unknown user  ";
+    };
+
+    const getProductName = (productId) =>{
+        const product = products.find(product =>product.id === productId);
+        return product ? product.name :"unknow product";
+    }
     return (
         <table className="table table-bordered border-primary">
             <thead>
                 <tr>
                     <th scope="col">Stt</th>
-                    <th scope="col">UserId</th>
-                    <th scope="col">ProductId</th>
+                    <th scope="col">Tên Người Dùng</th>
+                    <th scope="col">Tên Sản Phẩm</th>
                     <th scope="col">OrderId</th>
                     <th scope="col">Qty</th>
                     <th scope="col">Giá</th>
@@ -41,8 +75,8 @@ function AdminOrder() {
                 {orders.map((order, index) => (
                     <tr key={order.id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{order.user_id}</td>
-                        <td>{order.products.id}</td>
+                        <td>{getUserName(order.user_id)}</td>
+                        <td>{getProductName(order.products.id)}</td>
                         <td>{order.order_id}</td>
                         <td>{order.qty}</td>
                         <td>{order.price}</td>
